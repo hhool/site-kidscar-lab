@@ -15,6 +15,30 @@ type RegisterErrors = {
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+type ApiErrorCode = "INVALID_PAYLOAD" | "VALIDATION_ERROR" | "INVALID_CREDENTIALS" | "EMAIL_EXISTS";
+
+type AuthApiResponse = {
+  ok: boolean;
+  message?: string;
+  errorCode?: ApiErrorCode;
+};
+
+function parseApiErrorMessage(errorCode: ApiErrorCode | undefined, isZh: boolean): string {
+  if (errorCode === "EMAIL_EXISTS") {
+    return isZh ? "该邮箱已被注册" : "This email is already registered";
+  }
+
+  if (errorCode === "VALIDATION_ERROR") {
+    return isZh ? "请求参数不合法" : "Invalid request parameters";
+  }
+
+  if (errorCode === "INVALID_PAYLOAD") {
+    return isZh ? "请求体格式错误" : "Invalid request payload";
+  }
+
+  return isZh ? "注册失败，请稍后重试" : "Registration failed, please try again later";
+}
+
 export function RegisterForm() {
   const { isZh } = useAppLang();
 
@@ -24,6 +48,7 @@ export function RegisterForm() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState<RegisterErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const labels = useMemo(
     () =>
@@ -35,8 +60,9 @@ export function RegisterForm() {
             password: "密码",
             confirmPassword: "确认密码",
             submit: "注册",
+            submitting: "注册中...",
             helper: "已有账号？去登录",
-            success: "表单验证通过，可在下一阶段接入真实注册 API。",
+            success: "注册成功，认证 API 已连通（MVP 模拟会话）。",
           }
         : {
             title: "Create account",
@@ -45,8 +71,9 @@ export function RegisterForm() {
             password: "Password",
             confirmPassword: "Confirm Password",
             submit: "Register",
+            submitting: "Registering...",
             helper: "Already have an account? Login",
-            success: "Validation passed. A real signup API can be integrated in the next phase.",
+            success: "Registration succeeded. Auth API is connected (MVP mock session).",
           },
     [isZh],
   );
@@ -81,7 +108,7 @@ export function RegisterForm() {
     return nextErrors;
   };
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitted(false);
 
@@ -93,7 +120,34 @@ export function RegisterForm() {
     }
 
     setErrors({});
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          password,
+        }),
+      });
+
+      const data = (await response.json()) as AuthApiResponse;
+
+      if (!response.ok || !data.ok) {
+        setErrors({ form: parseApiErrorMessage(data.errorCode, isZh) });
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setErrors({ form: isZh ? "网络异常，请稍后重试" : "Network error, please try again" });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -151,8 +205,12 @@ export function RegisterForm() {
         {errors.confirmPassword && <p className="mt-1 text-xs text-red-600">{errors.confirmPassword}</p>}
       </div>
 
-      <button type="submit" className="w-full rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800">
-        {labels.submit}
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-70"
+      >
+        {isSubmitting ? labels.submitting : labels.submit}
       </button>
 
       <p className="mt-4 text-center text-sm text-zinc-600">

@@ -13,12 +13,37 @@ type LoginErrors = {
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+type ApiErrorCode = "INVALID_PAYLOAD" | "VALIDATION_ERROR" | "INVALID_CREDENTIALS" | "EMAIL_EXISTS";
+
+type AuthApiResponse = {
+  ok: boolean;
+  message?: string;
+  errorCode?: ApiErrorCode;
+};
+
+function parseApiErrorMessage(errorCode: ApiErrorCode | undefined, isZh: boolean): string {
+  if (errorCode === "INVALID_CREDENTIALS") {
+    return isZh ? "邮箱或密码错误" : "Invalid email or password";
+  }
+
+  if (errorCode === "VALIDATION_ERROR") {
+    return isZh ? "请求参数不合法" : "Invalid request parameters";
+  }
+
+  if (errorCode === "INVALID_PAYLOAD") {
+    return isZh ? "请求体格式错误" : "Invalid request payload";
+  }
+
+  return isZh ? "登录失败，请稍后重试" : "Login failed, please try again later";
+}
+
 export function LoginForm() {
   const { isZh } = useAppLang();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<LoginErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const labels = useMemo(
     () =>
@@ -28,16 +53,18 @@ export function LoginForm() {
             email: "邮箱",
             password: "密码",
             submit: "登录",
+            submitting: "登录中...",
             helper: "还没有账号？去注册",
-            success: "表单验证通过，可在下一阶段接入真实登录 API。",
+            success: "登录成功，认证 API 已连通（MVP 模拟会话）。",
           }
         : {
             title: "Welcome back",
             email: "Email",
             password: "Password",
             submit: "Login",
+            submitting: "Logging in...",
             helper: "No account yet? Register",
-            success: "Validation passed. A real auth API can be integrated in the next phase.",
+            success: "Login succeeded. Auth API is connected (MVP mock session).",
           },
     [isZh],
   );
@@ -60,7 +87,7 @@ export function LoginForm() {
     return nextErrors;
   };
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitted(false);
 
@@ -72,7 +99,33 @@ export function LoginForm() {
     }
 
     setErrors({});
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          password,
+        }),
+      });
+
+      const data = (await response.json()) as AuthApiResponse;
+
+      if (!response.ok || !data.ok) {
+        setErrors({ form: parseApiErrorMessage(data.errorCode, isZh) });
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setErrors({ form: isZh ? "网络异常，请稍后重试" : "Network error, please try again" });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -106,8 +159,12 @@ export function LoginForm() {
         {errors.password && <p className="mt-1 text-xs text-red-600">{errors.password}</p>}
       </div>
 
-      <button type="submit" className="w-full rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800">
-        {labels.submit}
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-70"
+      >
+        {isSubmitting ? labels.submitting : labels.submit}
       </button>
 
       <p className="mt-4 text-center text-sm text-zinc-600">
