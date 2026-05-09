@@ -36,6 +36,50 @@ describe("Auth API integration paths", () => {
     expect(response.headers.get("set-cookie") || "").toContain("kcl_session=");
   });
 
+  it("register missing fields should return 400", async () => {
+    const { POST } = await import("@/app/api/auth/register/route");
+
+    const request = new Request("http://localhost/api/auth/register", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ name: "Alice", email: "alice@example.com" }),
+    });
+
+    const response = await POST(request);
+    const body = await response.json();
+
+    expect(response.status).toBe(400);
+    expect(body.ok).toBe(false);
+    expect(body.errorCode).toBe("INVALID_PAYLOAD");
+  });
+
+  it("register duplicate email should return 409", async () => {
+    vi.doMock("@/lib/mock-auth", () => ({
+      registerUser: vi.fn().mockResolvedValue({ ok: false, errorCode: "EMAIL_EXISTS" }),
+    }));
+
+    vi.doMock("@/lib/auth-session", () => ({
+      AUTH_COOKIE_NAME: "kcl_session",
+      createSessionToken: vi.fn().mockReturnValue("token-1"),
+      getSessionMaxAge: vi.fn().mockReturnValue(3600),
+    }));
+
+    const { POST } = await import("@/app/api/auth/register/route");
+
+    const request = new Request("http://localhost/api/auth/register", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ name: "Alice", email: "alice@example.com", password: "password123" }),
+    });
+
+    const response = await POST(request);
+    const body = await response.json();
+
+    expect(response.status).toBe(409);
+    expect(body.ok).toBe(false);
+    expect(body.errorCode).toBe("EMAIL_EXISTS");
+  });
+
   it("login invalid credentials should return 401", async () => {
     vi.doMock("@/lib/mock-auth", () => ({
       loginUser: vi.fn().mockResolvedValue({ ok: false, errorCode: "INVALID_CREDENTIALS" }),
@@ -91,6 +135,52 @@ describe("Auth API integration paths", () => {
     expect(response.status).toBe(200);
     expect(body.ok).toBe(true);
     expect(response.headers.get("set-cookie") || "").toContain("kcl_session=");
+  });
+
+  it("login missing fields should return 400", async () => {
+    const { POST } = await import("@/app/api/auth/login/route");
+
+    const request = new Request("http://localhost/api/auth/login", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ email: "alice@example.com" }),
+    });
+
+    const response = await POST(request);
+    const body = await response.json();
+
+    expect(response.status).toBe(400);
+    expect(body.ok).toBe(false);
+    expect(body.errorCode).toBe("INVALID_PAYLOAD");
+  });
+
+  it("me should return authed false for tampered cookie", async () => {
+    const verifySessionToken = vi.fn().mockReturnValue(null);
+
+    vi.doMock("next/headers", () => ({
+      cookies: async () => ({
+        get: () => ({ value: "tampered.payload" }),
+      }),
+    }));
+
+    vi.doMock("@/lib/auth-session", () => ({
+      AUTH_COOKIE_NAME: "kcl_session",
+      verifySessionToken,
+    }));
+
+    vi.doMock("@/lib/mock-auth", () => ({
+      getUserById: vi.fn(),
+    }));
+
+    const { GET } = await import("@/app/api/auth/me/route");
+    const response = await GET();
+    const body = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(body.ok).toBe(true);
+    expect(body.authed).toBe(false);
+    expect(body.user).toBeNull();
+    expect(verifySessionToken).toHaveBeenCalledWith("tampered.payload");
   });
 
   it("logout should clear cookie", async () => {
