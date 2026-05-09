@@ -1,10 +1,18 @@
-import { PlaceholderPage } from "@/components/PlaceholderPage";
+import { PageShell } from "@/components/PageShell";
+import { LoginForm } from "@/components/LoginForm";
 
-export default function Page() {
+export default function LoginPage() {
   return (
-    <PlaceholderPage
+    <PageShell
       title={{ zh: "用户登录", en: "Login" }}
-      description={{ zh: "登录表单与会话管理占位。", en: "Placeholder for login form and session management." }}
-    />
+      description={{
+        zh: "使用邮箱和密码登录。当前为 MVP 表单验证版本。",
+        en: "Login with email and password. This is an MVP validation-only version.",
+      }}
+    >
+      <div className="mx-auto mt-6 w-full max-w-md">
+        <LoginForm />
+      </div>
+    </PageShell>
   );
 }
