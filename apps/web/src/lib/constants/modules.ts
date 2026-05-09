@@ -1,0 +1,17 @@
+export const PRIMARY_MODULES = [
+  "home",
+  "reviews",
+  "rankings",
+  "products",
+  "news",
+  "about",
+  "compare",
+  "methodology",
+  "testResults",
+  "guides",
+  "brands",
+  "deals",
+  "community",
+  "auth",
+  "account",
+] as const;
