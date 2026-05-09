@@ -47,18 +47,22 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, errorCode: "VALIDATION_ERROR", message: "Password must be at least 8 characters." }, { status: 400 });
   }
 
-  const result = registerUser({ name, email, password });
-  if (!result.ok) {
-    return NextResponse.json({ ok: false, errorCode: result.errorCode, message: "Email is already registered." }, { status: 409 });
-  }
+  try {
+    const result = await registerUser({ name, email, password });
+    if (!result.ok) {
+      return NextResponse.json({ ok: false, errorCode: result.errorCode, message: "Email is already registered." }, { status: 409 });
+    }
 
-  return NextResponse.json(
-    {
-      ok: true,
-      message: "Registration successful.",
-      user: result.user,
-      token: `mock-token-${crypto.randomUUID()}`,
-    },
-    { status: 201 },
-  );
+    return NextResponse.json(
+      {
+        ok: true,
+        message: "Registration successful.",
+        user: result.user,
+        token: `mock-token-${crypto.randomUUID()}`,
+      },
+      { status: 201 },
+    );
+  } catch {
+    return NextResponse.json({ ok: false, errorCode: "SERVER_ERROR", message: "Server error while registering." }, { status: 500 });
+  }
 }

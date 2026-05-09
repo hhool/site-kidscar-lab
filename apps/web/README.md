@@ -27,6 +27,16 @@ Optional SEO base URL override:
 NEXT_PUBLIC_SITE_URL=https://your-domain.example
 ```
 
+## Auth Persistence (Neon Free Postgres)
+
+Set `DATABASE_URL` in `.env.local` to enable persistent login/register storage.
+
+```bash
+DATABASE_URL=postgresql://<user>:<password>@<host>/<database>?sslmode=require
+```
+
+See [docs/neon-auth-setup.md](docs/neon-auth-setup.md) for the full setup flow.
+
 ## Project Structure
 
 - `src/app`: routes, layout, metadata routes

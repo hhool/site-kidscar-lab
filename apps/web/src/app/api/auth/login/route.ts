@@ -37,15 +37,19 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, errorCode: "VALIDATION_ERROR", message: "Invalid email or password format." }, { status: 400 });
   }
 
-  const result = loginUser({ email, password });
-  if (!result.ok) {
-    return NextResponse.json({ ok: false, errorCode: result.errorCode, message: "Invalid email or password." }, { status: 401 });
-  }
+  try {
+    const result = await loginUser({ email, password });
+    if (!result.ok) {
+      return NextResponse.json({ ok: false, errorCode: result.errorCode, message: "Invalid email or password." }, { status: 401 });
+    }
 
-  return NextResponse.json({
-    ok: true,
-    message: "Login successful.",
-    user: result.user,
-    token: `mock-token-${crypto.randomUUID()}`,
-  });
+    return NextResponse.json({
+      ok: true,
+      message: "Login successful.",
+      user: result.user,
+      token: `mock-token-${crypto.randomUUID()}`,
+    });
+  } catch {
+    return NextResponse.json({ ok: false, errorCode: "SERVER_ERROR", message: "Server error while logging in." }, { status: 500 });
+  }
 }
