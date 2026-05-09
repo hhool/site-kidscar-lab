@@ -8,6 +8,12 @@ type SessionPayload = {
   exp: number;
 };
 
+type SessionInspection = {
+  ok: boolean;
+  reason?: "MISSING" | "MALFORMED" | "INVALID_SIGNATURE" | "EXPIRED";
+  payload?: SessionPayload;
+};
+
 function base64UrlEncode(value: string): string {
   return Buffer.from(value, "utf8").toString("base64url");
 }
@@ -35,14 +41,14 @@ export function createSessionToken(userId: string): string {
   return `${encodedPayload}.${signature}`;
 }
 
-export function verifySessionToken(token: string | undefined): SessionPayload | null {
+export function inspectSessionToken(token: string | undefined): SessionInspection {
   if (!token) {
-    return null;
+    return { ok: false, reason: "MISSING" };
   }
 
   const [encodedPayload, signature] = token.split(".");
   if (!encodedPayload || !signature) {
-    return null;
+    return { ok: false, reason: "MALFORMED" };
   }
 
   const expected = sign(encodedPayload);
@@ -50,27 +56,32 @@ export function verifySessionToken(token: string | undefined): SessionPayload | 
   const expectedBuffer = Buffer.from(expected);
 
   if (signatureBuffer.length !== expectedBuffer.length) {
-    return null;
+    return { ok: false, reason: "INVALID_SIGNATURE" };
   }
 
   if (!timingSafeEqual(signatureBuffer, expectedBuffer)) {
-    return null;
+    return { ok: false, reason: "INVALID_SIGNATURE" };
   }
 
   try {
     const payload = JSON.parse(base64UrlDecode(encodedPayload)) as SessionPayload;
     if (!payload.userId || typeof payload.exp !== "number") {
-      return null;
+      return { ok: false, reason: "MALFORMED" };
     }
 
     if (payload.exp < Math.floor(Date.now() / 1000)) {
-      return null;
+      return { ok: false, reason: "EXPIRED" };
     }
 
-    return payload;
+    return { ok: true, payload };
   } catch {
-    return null;
+    return { ok: false, reason: "MALFORMED" };
   }
+}
+
+export function verifySessionToken(token: string | undefined): SessionPayload | null {
+  const inspected = inspectSessionToken(token);
+  return inspected.ok ? inspected.payload || null : null;
 }
 
 export function getSessionMaxAge(): number {

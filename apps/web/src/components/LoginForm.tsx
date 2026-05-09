@@ -12,6 +12,10 @@ type LoginErrors = {
   form?: string;
 };
 
+type LoginFormProps = {
+  redirectReason?: string;
+};
+
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type ApiErrorCode = "INVALID_PAYLOAD" | "VALIDATION_ERROR" | "INVALID_CREDENTIALS" | "EMAIL_EXISTS";
@@ -38,7 +42,7 @@ function parseApiErrorMessage(errorCode: ApiErrorCode | undefined, isZh: boolean
   return isZh ? "登录失败，请稍后重试" : "Login failed, please try again later";
 }
 
-export function LoginForm() {
+export function LoginForm({ redirectReason }: LoginFormProps) {
   const { isZh } = useAppLang();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -69,6 +73,22 @@ export function LoginForm() {
           },
     [isZh],
   );
+
+  const redirectNotice = useMemo(() => {
+    if (redirectReason === "expired") {
+      return isZh ? "会话已过期，请重新登录。" : "Your session has expired. Please sign in again.";
+    }
+
+    if (redirectReason === "missing") {
+      return isZh ? "请先登录后访问用户中心。" : "Please sign in before accessing your account.";
+    }
+
+    if (redirectReason === "invalid") {
+      return isZh ? "登录状态无效，请重新登录。" : "Invalid login state. Please sign in again.";
+    }
+
+    return "";
+  }, [isZh, redirectReason]);
 
   const validate = () => {
     const nextErrors: LoginErrors = {};
@@ -134,6 +154,7 @@ export function LoginForm() {
     <form onSubmit={onSubmit} className="rounded-xl border border-zinc-200 bg-white p-6">
       <h2 className="mb-4 text-xl font-semibold text-zinc-900">{labels.title}</h2>
 
+      {redirectNotice ? <p className="mb-4 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-700">{redirectNotice}</p> : null}
       {errors.form && <p className="mb-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{errors.form}</p>}
       {submitted && <p className="mb-4 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-700">{labels.success}</p>}
 

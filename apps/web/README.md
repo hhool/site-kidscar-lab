@@ -9,6 +9,7 @@ npm run dev
 npm run lint
 npm run build
 npm run check
+npm run test
 ```
 
 `npm run check` is the Day 4 quality gate and must pass before commit.

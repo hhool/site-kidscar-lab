@@ -2,21 +2,35 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { PageShell } from "@/components/PageShell";
 import { ROUTES } from "@/lib/constants/routes";
-import { AUTH_COOKIE_NAME, verifySessionToken } from "@/lib/auth-session";
+import { AUTH_COOKIE_NAME, inspectSessionToken } from "@/lib/auth-session";
 import { getUserById } from "@/lib/mock-auth";
+
+function getLoginRedirect(reason: "expired" | "missing" | "invalid") {
+  return `${ROUTES.authLogin}?reason=${reason}&next=${encodeURIComponent(ROUTES.account)}`;
+}
 
 export default async function AccountPage() {
   const cookieStore = await cookies();
   const token = cookieStore.get(AUTH_COOKIE_NAME)?.value;
-  const session = verifySessionToken(token);
+  const inspected = inspectSessionToken(token);
 
-  if (!session) {
-    redirect(ROUTES.authLogin);
+  if (!inspected.ok) {
+    if (inspected.reason === "EXPIRED") {
+      redirect(getLoginRedirect("expired"));
+    }
+
+    if (inspected.reason === "MISSING") {
+      redirect(getLoginRedirect("missing"));
+    }
+
+    redirect(getLoginRedirect("invalid"));
   }
 
-  const user = await getUserById(session.userId);
+  const session = inspected.payload;
+
+  const user = await getUserById(session!.userId);
   if (!user) {
-    redirect(ROUTES.authLogin);
+    redirect(getLoginRedirect("invalid"));
   }
 
   return (
