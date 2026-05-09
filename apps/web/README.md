@@ -14,6 +14,12 @@ npm run test
 
 `npm run check` is the Day 4 quality gate and must pass before commit.
 
+Current check flow:
+
+```bash
+npm run lint && npm run test && npm run build
+```
+
 ## Local Preview
 
 ```bash
@@ -55,7 +61,8 @@ See [docs/neon-auth-setup.md](docs/neon-auth-setup.md) for the full setup flow.
 
 - unified shell: top navigation, page shell, footer
 - no-refresh language switch (`lang` query + local storage)
-- mock auth state switch in navigation
+- persisted auth with Neon Postgres + httpOnly cookie session
+- protected account route with redirect reason notice
 - bilingual placeholders for all primary routes
 
 ## Phase 0 Snapshot
