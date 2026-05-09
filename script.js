@@ -240,6 +240,91 @@ function setTextAt(selector, index, text) {
   if (nodes[index]) nodes[index].textContent = text;
 }
 
+function applyZhPageLanguage() {
+  const titleMap = {
+    "index.html": "KidsCarLab 原型 - 首页",
+    "products.html": "产品 - 原型",
+    "reviews.html": "评测 - 原型",
+    "rankings.html": "排名/最佳 - 原型",
+    "news.html": "资讯更新 - 原型",
+    "about.html": "关于与透明度 - 原型",
+    "compare.html": "对比 - 原型",
+    "methodology.html": "测试方法 - 原型",
+    "test-results.html": "测试结果数据库 - 原型",
+    "guides.html": "指南与文章 - 原型",
+    "brands.html": "品牌与型号 - 原型",
+    "deals.html": "优惠与价格 - 原型",
+    "community.html": "社区与反馈 - 原型",
+    "auth-login.html": "登录 - 原型",
+    "auth-register.html": "注册 - 原型",
+    "account.html": "用户中心 - 原型",
+  };
+
+  if (titleMap[current]) {
+    document.title = titleMap[current];
+  }
+
+  if (current === "products.html") {
+    setText(".hero h1", "产品");
+  }
+
+  if (current === "reviews.html") {
+    setText(".hero h1", "评测");
+  }
+
+  if (current === "rankings.html") {
+    setText(".hero h1", "排名/最佳");
+  }
+
+  if (current === "news.html") {
+    setText(".hero h1", "资讯更新");
+  }
+
+  if (current === "about.html") {
+    setText(".hero h1", "关于与透明度");
+  }
+
+  if (current === "compare.html") {
+    setText(".hero h1", "对比");
+  }
+
+  if (current === "methodology.html") {
+    setText(".hero h1", "测试方法");
+  }
+
+  if (current === "test-results.html") {
+    setText(".hero h1", "测试结果数据库");
+  }
+
+  if (current === "guides.html") {
+    setText(".hero h1", "指南与文章");
+  }
+
+  if (current === "brands.html") {
+    setText(".hero h1", "品牌与型号");
+  }
+
+  if (current === "deals.html") {
+    setText(".hero h1", "优惠与价格");
+  }
+
+  if (current === "community.html") {
+    setText(".hero h1", "社区与反馈");
+  }
+
+  if (current === "auth-login.html") {
+    setText(".hero h1", "用户登录");
+  }
+
+  if (current === "auth-register.html") {
+    setText(".hero h1", "用户注册");
+  }
+
+  if (current === "account.html") {
+    setText(".hero h1", "用户中心");
+  }
+}
+
 function normalizeText(value) {
   return value.toLowerCase().replace(/\s+/g, " ").replace(/[.]/g, "").trim();
 }
@@ -280,7 +365,10 @@ function applySingleLanguagePresentation() {
 function applyPageLanguage() {
   const lang = getCurrentLang();
   document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
-  if (lang !== "en") return;
+  if (lang !== "en") {
+    applyZhPageLanguage();
+    return;
+  }
 
   const titleMap = {
     "index.html": "KidscarLab Prototype - Home",
