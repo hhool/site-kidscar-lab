@@ -21,6 +21,12 @@ npm run dev -- --hostname 127.0.0.1 --port 3010
 
 Open http://127.0.0.1:3010 in browser.
 
+Optional SEO base URL override:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.example
+```
+
 ## Project Structure
 
 - `src/app`: routes, layout, metadata routes
@@ -40,3 +46,7 @@ Open http://127.0.0.1:3010 in browser.
 - no-refresh language switch (`lang` query + local storage)
 - mock auth state switch in navigation
 - bilingual placeholders for all primary routes
+
+## Phase 0 Snapshot
+
+- See `docs/phase0-snapshot.md` for closure summary and Phase 1 entry checklist.
