@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { type Locale } from "@/lib/constants/locales";
 import { ROUTES } from "@/lib/constants/routes";
 import { useAppLang } from "@/components/useAppLang";
 
 const AUTH_KEY = "kcl_auth";
+const AUTH_EVENT = "kcl:auth-change";
 
 const mainLinks = [
   {
@@ -47,23 +48,40 @@ function pick(lang: Locale, value: { zh: string; en: string }) {
   return lang === "zh" ? value.zh : value.en;
 }
 
+function subscribeAuth(onStoreChange: () => void): () => void {
+  if (typeof window === "undefined") {
+    return () => {};
+  }
+
+  const handler = () => onStoreChange();
+  window.addEventListener(AUTH_EVENT, handler);
+  window.addEventListener("storage", handler);
+
+  return () => {
+    window.removeEventListener(AUTH_EVENT, handler);
+    window.removeEventListener("storage", handler);
+  };
+}
+
+function readClientAuthed(): boolean {
+  if (typeof window === "undefined") {
+    return false;
+  }
+  return localStorage.getItem(AUTH_KEY) === "1";
+}
+
 export function TopNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [authed, setAuthed] = useState(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
-    return localStorage.getItem(AUTH_KEY) === "1";
-  });
+  const authed = useSyncExternalStore(subscribeAuth, readClientAuthed, () => false);
   const { lang, switchLang } = useAppLang();
 
   const isActive = (href: string) => pathname === href;
 
   const toggleAuth = () => {
     const next = !authed;
-    setAuthed(next);
     localStorage.setItem(AUTH_KEY, next ? "1" : "0");
+    window.dispatchEvent(new Event(AUTH_EVENT));
   };
 
   return (

@@ -1,61 +1,68 @@
 "use client";
 
-import { useCallback, useEffect, useMemo } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useCallback, useSyncExternalStore } from "react";
 import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/lib/constants/locales";
 
 const LANG_KEY = "kcl_lang";
+const LANG_EVENT = "kcl:lang-change";
 
 function isLocale(value: string | null): value is Locale {
   return value !== null && (LOCALES as readonly string[]).includes(value);
 }
 
+function readClientLang(): Locale {
+  if (typeof window === "undefined") {
+    return DEFAULT_LOCALE;
+  }
+
+  const query = new URLSearchParams(window.location.search).get("lang");
+  if (isLocale(query)) {
+    return query;
+  }
+
+  const stored = localStorage.getItem(LANG_KEY);
+  if (isLocale(stored)) {
+    return stored;
+  }
+
+  return DEFAULT_LOCALE;
+}
+
+function subscribe(onStoreChange: () => void): () => void {
+  if (typeof window === "undefined") {
+    return () => {};
+  }
+
+  const handler = () => onStoreChange();
+  window.addEventListener("popstate", handler);
+  window.addEventListener(LANG_EVENT, handler);
+
+  return () => {
+    window.removeEventListener("popstate", handler);
+    window.removeEventListener(LANG_EVENT, handler);
+  };
+}
+
 export function useAppLang() {
-  const pathname = usePathname();
-  const router = useRouter();
-
-  const queryLang =
-    typeof window === "undefined" ? null : new URLSearchParams(window.location.search).get("lang");
-
-  const storedLang: Locale =
-    typeof window === "undefined"
-      ? DEFAULT_LOCALE
-      : (() => {
-          const stored = localStorage.getItem(LANG_KEY);
-          return isLocale(stored) ? stored : DEFAULT_LOCALE;
-        })();
-
-  const lang = useMemo(() => {
-    if (isLocale(queryLang)) {
-      return queryLang;
-    }
-    return storedLang;
-  }, [queryLang, storedLang]);
-
-  useEffect(() => {
-    if (isLocale(queryLang)) {
-      localStorage.setItem(LANG_KEY, queryLang);
-      return;
-    }
-
-    if (isLocale(storedLang)) {
-      const params = new URLSearchParams(typeof window === "undefined" ? "" : window.location.search);
-      params.set("lang", storedLang);
-      router.replace(`${pathname}?${params.toString()}`);
-    }
-  }, [pathname, queryLang, router, storedLang]);
+  const lang = useSyncExternalStore(subscribe, readClientLang, () => DEFAULT_LOCALE);
 
   const switchLang = useCallback(
     (nextLang: Locale) => {
+      if (typeof window === "undefined") {
+        return;
+      }
+
       localStorage.setItem(LANG_KEY, nextLang);
-      const params = new URLSearchParams(typeof window === "undefined" ? "" : window.location.search);
+      const params = new URLSearchParams(window.location.search);
       params.set("lang", nextLang);
-      router.replace(`${pathname}?${params.toString()}`);
+      const nextUrl = `${window.location.pathname}?${params.toString()}`;
+      window.history.replaceState(window.history.state, "", nextUrl);
+      window.dispatchEvent(new Event(LANG_EVENT));
     },
-    [pathname, router],
+    [],
   );
 
-  const isZh = useMemo(() => lang === "zh", [lang]);
+  const isZh = lang === "zh";
 
   return { lang, isZh, switchLang };
 }
