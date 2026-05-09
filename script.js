@@ -68,6 +68,282 @@ const TEXTS = {
   },
 };
 
+const PAGE_TITLE_MAP = {
+  zh: {
+    "index.html": "KidsCarLab 原型 - 首页",
+    "products.html": "产品 - 原型",
+    "reviews.html": "评测 - 原型",
+    "rankings.html": "排名/最佳 - 原型",
+    "news.html": "资讯更新 - 原型",
+    "about.html": "关于与透明度 - 原型",
+    "compare.html": "对比 - 原型",
+    "methodology.html": "测试方法 - 原型",
+    "test-results.html": "测试结果数据库 - 原型",
+    "guides.html": "指南与文章 - 原型",
+    "brands.html": "品牌与型号 - 原型",
+    "deals.html": "优惠与价格 - 原型",
+    "community.html": "社区与反馈 - 原型",
+    "auth-login.html": "登录 - 原型",
+    "auth-register.html": "注册 - 原型",
+    "account.html": "用户中心 - 原型",
+  },
+  en: {
+    "index.html": "KidscarLab Prototype - Home",
+    "products.html": "Products - Prototype",
+    "reviews.html": "Reviews - Prototype",
+    "rankings.html": "Rankings - Prototype",
+    "news.html": "News - Prototype",
+    "about.html": "About & Transparency - Prototype",
+    "compare.html": "Compare - Prototype",
+    "methodology.html": "Test Methodology - Prototype",
+    "test-results.html": "Test Results Database - Prototype",
+    "guides.html": "Guides & Articles - Prototype",
+    "brands.html": "Brands & Models - Prototype",
+    "deals.html": "Deals & Prices - Prototype",
+    "community.html": "Community & Feedback - Prototype",
+    "auth-login.html": "Sign In - Prototype",
+    "auth-register.html": "Sign Up - Prototype",
+    "account.html": "Account Center - Prototype",
+  },
+};
+
+const PAGE_TEXT_OPS = {
+  "index.html": {
+    en: [
+      { selector: ".hero h1", text: "RTINGS-Style Kids Vehicle Review Prototype" },
+      {
+        selector: ".hero p",
+        text: "This prototype is generated from your mind map: review-first, with rankings, products, updates, and transparency forming the decision path. This version focuses on first-level architecture and key second-level entries for the next step toward a real data-driven site.",
+      },
+      { selector: ".badges span", index: 0, text: "Review-driven decisions" },
+      { selector: ".badges span", index: 1, text: "Comparison-oriented navigation" },
+      { selector: ".badges span", index: 2, text: "Transparent, traceable testing" },
+      { selector: ".badges span", index: 3, text: "Built for kids vehicle categories" },
+      { selector: ".section h2", index: 0, text: "First-Level Structure Overview" },
+      { selector: ".section .subtitle", index: 0, text: "Covers the minimum viable structure in your mind map and leaves room for expansion." },
+      { selector: ".grid .card h3", index: 0, text: "Reviews" },
+      { selector: ".grid .card h3", index: 1, text: "Best Picks" },
+      { selector: ".grid .card h3", index: 2, text: "Products" },
+      { selector: ".grid .card h3", index: 3, text: "News" },
+      { selector: ".grid .card h3", index: 4, text: "About & Transparency" },
+      { selector: ".grid .card h3", index: 5, text: "Complete First-Level Modules" },
+      { selector: ".grid .card p", index: 0, text: "Latest reviews organized by category, age, price tier, and testing metrics." },
+      { selector: ".grid .card p", index: 1, text: "Leaderboards by composite score, features, user ratings, origin, price, safety, and value." },
+      { selector: ".grid .card p", index: 2, text: "Browse products by category, age group, price tier, brand, and usage scenario." },
+      { selector: ".grid .card p", index: 3, text: "Industry updates, product launches, promotions, media coverage, and transparency updates." },
+      { selector: ".grid .card p", index: 4, text: "Testing process, data sources, review team, privacy policy, and supply chain transparency." },
+      {
+        selector: ".grid .card p",
+        index: 5,
+        text: "Prototype pages already include compare, methodology, test results, guides, brands, deals, and community feedback.",
+      },
+      { selector: ".section h2", index: 1, text: "Complete First-Level Entry Links" },
+      { selector: ".section .subtitle", index: 1, text: "All pages below are clickable prototypes for interaction refinement and real data integration." },
+      { selector: ".list .item strong", index: 0, text: "Compare" },
+      { selector: ".list .item strong", index: 1, text: "Test Methodology" },
+      { selector: ".list .item strong", index: 2, text: "Test Results Database" },
+      { selector: ".list .item strong", index: 3, text: "Guides & Articles" },
+      { selector: ".list .item strong", index: 4, text: "Brands & Models" },
+      { selector: ".list .item strong", index: 5, text: "Deals & Prices" },
+      { selector: ".list .item strong", index: 6, text: "Community & Feedback" },
+      { selector: ".list .item strong", index: 7, text: "User Registration" },
+      { selector: ".list .item strong", index: 8, text: "User Login" },
+      { selector: ".section h2", index: 2, text: "Homepage Module Prototype" },
+      {
+        selector: ".section .subtitle",
+        index: 2,
+        text: "Mapped to your homepage blueprint: carousel, featured modules, editor picks, updates, and transparency block.",
+      },
+      { selector: ".list .item strong", index: 9, text: "Carousel" },
+      { selector: ".list .item strong", index: 10, text: "Featured Modules" },
+      { selector: ".list .item strong", index: 11, text: "Editor Picks" },
+      { selector: ".list .item strong", index: 12, text: "News Feed" },
+      { selector: ".list .item strong", index: 13, text: "Transparency Block" },
+      { selector: ".list .item strong", index: 14, text: "Footer Links" },
+      { selector: ".list .item span", index: 9, text: "Latest reviews / latest rankings / latest products" },
+      { selector: ".list .item span", index: 10, text: "Composite ranking, feature ranking, user rating ranking, origin/price/safety/value" },
+      { selector: ".list .item span", index: 11, text: "Selected reviews, selected rankings, selected products" },
+      { selector: ".list .item span", index: 12, text: "Industry updates, product launches, promotions, media coverage" },
+      { selector: ".list .item span", index: 13, text: "Methodology, data sources, review team, company information" },
+      { selector: ".list .item span", index: 14, text: "Privacy policy, terms of use, contact, social media" },
+      { selector: ".kpi .label", index: 0, text: "Core first-level sections" },
+      { selector: ".kpi .label", index: 1, text: "Second-level entry points" },
+      { selector: ".kpi .label", index: 2, text: "Unified navigation system" },
+      { selector: ".kpi .label", index: 3, text: "Generated from blueprint" },
+    ],
+  },
+  "products.html": {
+    zh: [{ selector: ".hero h1", text: "产品" }],
+    en: [
+      { selector: ".hero h1", text: "Products" },
+      { selector: ".hero p", text: "Aggregates product data, structured specs, user feedback, and supply-chain transparency for filtering and comparison." },
+      { selector: ".section h2", index: 0, text: "Secondary Navigation" },
+      { selector: ".list .item strong", index: 0, text: "Latest / All Products" },
+      { selector: ".list .item strong", index: 1, text: "Products by category" },
+      { selector: ".list .item strong", index: 2, text: "By age / price tier / scenario" },
+      { selector: ".list .item strong", index: 3, text: "Products by brand" },
+      { selector: ".list .item strong", index: 4, text: "Updates and version history" },
+      { selector: ".list .item strong", index: 5, text: "Editor picks" },
+      { selector: ".list .item span", index: 1, text: "Electric ride-ons, rocking cars, balance bikes, bicycles, scooters, tricycles" },
+      { selector: ".list .item span", index: 3, text: "Domestic / International / OEM" },
+      { selector: ".section h2", index: 1, text: "Product Information Database Prototype" },
+      { selector: ".grid .card h3", index: 0, text: "Product Specs Database" },
+      { selector: ".grid .card h3", index: 1, text: "User Reviews & Feedback" },
+      { selector: ".grid .card h3", index: 2, text: "Origin & Factory Information" },
+      { selector: ".grid .card p", index: 0, text: "Specifications, pricing, origin, testing data" },
+      { selector: ".grid .card p", index: 1, text: "Verified comments, user ratings, keyword tags" },
+      { selector: ".grid .card p", index: 2, text: "Origin traceability, factory certifications, manufacturer endorsements" },
+    ],
+  },
+  "reviews.html": {
+    zh: [{ selector: ".hero h1", text: "评测" }],
+    en: [
+      { selector: ".hero h1", text: "Reviews" },
+      {
+        selector: ".hero p",
+        text: "Organized around latest reviews, category-focused reviews, and update logs for a filterable, traceable, and comparable review system.",
+      },
+      { selector: ".section h2", index: 0, text: "Secondary Navigation" },
+      { selector: ".list .item strong", index: 0, text: "Latest Reviews" },
+      { selector: ".list .item strong", index: 1, text: "All Reviews" },
+      { selector: ".list .item strong", index: 2, text: "Reviews by category" },
+      { selector: ".list .item strong", index: 3, text: "Reviews by age group" },
+      { selector: ".list .item strong", index: 4, text: "Reviews by price tier" },
+      { selector: ".list .item strong", index: 5, text: "Reviews by scenario" },
+      { selector: ".list .item strong", index: 6, text: "Reviews by testing metrics" },
+      { selector: ".list .item strong", index: 7, text: "Reviews by score tier" },
+      { selector: ".list .item strong", index: 8, text: "Reviews by brand" },
+      { selector: ".list .item strong", index: 9, text: "Review updates & changelog" },
+      { selector: ".list .item strong", index: 10, text: "Editor picks" },
+      { selector: ".list .item span", index: 2, text: "Electric ride-ons, rocking cars, balance bikes, bicycles, scooters, tricycles" },
+      { selector: ".list .item span", index: 3, text: "0-1, 1-3, 3-6, 6-12, 12-18" },
+      { selector: ".list .item span", index: 4, text: "Entry / Mainstream / Premium" },
+      { selector: ".list .item span", index: 5, text: "Indoor, outdoor, park, commuting, travel" },
+      { selector: ".list .item span", index: 6, text: "Safety, durability, handling, range, comfort, value" },
+    ],
+  },
+  "rankings.html": {
+    zh: [{ selector: ".hero h1", text: "排名/最佳" }],
+    en: [
+      { selector: ".hero h1", text: "Best Picks" },
+      {
+        selector: ".hero p",
+        text: "From composite scores to feature metrics, user ratings, and origin dimensions, this section builds layered recommendation leaderboards.",
+      },
+      { selector: ".section h2", index: 0, text: "Core Ranking Entrances" },
+      { selector: ".section h2", index: 1, text: "Secondary Navigation" },
+      { selector: ".grid .card h3", index: 0, text: "Composite Score Ranking" },
+      { selector: ".grid .card h3", index: 1, text: "Feature Ranking" },
+      { selector: ".grid .card h3", index: 2, text: "User Ratings Ranking" },
+      { selector: ".grid .card h3", index: 3, text: "Origin Ranking" },
+      { selector: ".grid .card h3", index: 4, text: "Price Ranking" },
+      { selector: ".grid .card h3", index: 5, text: "Safety / Value Ranking" },
+      { selector: ".list .item strong", index: 0, text: "Latest / All Rankings" },
+      { selector: ".list .item strong", index: 1, text: "By type / age / price / scenario" },
+      { selector: ".list .item strong", index: 2, text: "By metric / score tier / brand" },
+      { selector: ".list .item strong", index: 3, text: "Changelog / Editor Picks" },
+    ],
+  },
+  "news.html": {
+    zh: [{ selector: ".hero h1", text: "资讯更新" }],
+    en: [
+      { selector: ".hero h1", text: "News & Updates" },
+      { selector: ".hero p", text: "Covers industry moves, product launches, promotions, and transparency updates to keep users informed and engaged." },
+      { selector: ".section h2", index: 0, text: "Secondary Navigation" },
+      { selector: ".list .item strong", index: 0, text: "Latest News" },
+      { selector: ".list .item strong", index: 1, text: "Industry Updates" },
+      { selector: ".list .item strong", index: 2, text: "Product Launches" },
+      { selector: ".list .item strong", index: 3, text: "Events & Promotions" },
+      { selector: ".list .item strong", index: 4, text: "Media Coverage" },
+      { selector: ".list .item strong", index: 5, text: "User Stories" },
+      { selector: ".list .item strong", index: 6, text: "Company News" },
+      { selector: ".list .item strong", index: 7, text: "Testing & Review Updates" },
+      { selector: ".list .item strong", index: 8, text: "Community Updates" },
+      { selector: ".list .item strong", index: 9, text: "Transparency Updates" },
+    ],
+  },
+  "about.html": {
+    zh: [{ selector: ".hero h1", text: "关于与透明度" }],
+    en: [
+      { selector: ".hero h1", text: "About & Transparency" },
+      {
+        selector: ".hero p",
+        text: "Explains methodology, data sources, review team practices, and supply-chain transparency to build trust in the platform.",
+      },
+      { selector: ".section h2", index: 0, text: "Secondary Navigation" },
+      { selector: ".list .item strong", index: 0, text: "Company Information" },
+      { selector: ".list .item strong", index: 1, text: "Methodology / Data Sources" },
+      { selector: ".list .item strong", index: 2, text: "Review Team / Transparency Report" },
+      { selector: ".list .item strong", index: 3, text: "Ethics & Responsibility" },
+      { selector: ".list .item strong", index: 4, text: "Supply Chain Transparency / Origin Traceability" },
+      { selector: ".list .item strong", index: 5, text: "Factory Endorsement / Dual Confirmation" },
+      { selector: ".list .item strong", index: 6, text: "Privacy Policy / Terms of Use" },
+      { selector: ".list .item strong", index: 7, text: "Contact / FAQ / Feedback" },
+    ],
+  },
+  "compare.html": {
+    zh: [{ selector: ".hero h1", text: "对比" }],
+    en: [
+      { selector: ".hero h1", text: "Compare" },
+      { selector: ".hero p", text: "Compare two or multiple products on one screen across specs, test metrics, user ratings, and price trends." },
+    ],
+  },
+  "methodology.html": {
+    zh: [{ selector: ".hero h1", text: "测试方法" }],
+    en: [
+      { selector: ".hero h1", text: "Test Methodology" },
+      {
+        selector: ".hero p",
+        text: "Publicly documents testing procedures, equipment, sampling strategy, scoring rules, and retest mechanisms for reproducibility.",
+      },
+    ],
+  },
+  "test-results.html": {
+    zh: [{ selector: ".hero h1", text: "测试结果数据库" }],
+    en: [
+      { selector: ".hero h1", text: "Test Results Database" },
+      { selector: ".hero p", text: "Presents structured test metrics, version differences, downloadable interfaces, and filters." },
+    ],
+  },
+  "guides.html": {
+    zh: [{ selector: ".hero h1", text: "指南与文章" }],
+    en: [
+      { selector: ".hero h1", text: "Guides & Articles" },
+      { selector: ".hero p", text: "Hub for buying guides, maintenance guides, policy explainers, and industry analysis articles." },
+    ],
+  },
+  "brands.html": {
+    zh: [{ selector: ".hero h1", text: "品牌与型号" }],
+    en: [
+      { selector: ".hero h1", text: "Brands & Models" },
+      { selector: ".hero p", text: "Entry point for brand profiles, model series, iteration history, and market performance comparisons." },
+    ],
+  },
+  "deals.html": {
+    zh: [{ selector: ".hero h1", text: "优惠与价格" }],
+    en: [
+      { selector: ".hero h1", text: "Deals & Prices" },
+      { selector: ".hero p", text: "Shows live deals, historical price curves, and channel price gap comparisons." },
+    ],
+  },
+  "community.html": {
+    zh: [{ selector: ".hero h1", text: "社区与反馈" }],
+    en: [
+      { selector: ".hero h1", text: "Community & Feedback" },
+      { selector: ".hero p", text: "Aggregates user discussions, Q&A, voting, and suggestion feedback." },
+    ],
+  },
+  "auth-login.html": {
+    zh: [{ selector: ".hero h1", text: "用户登录" }],
+  },
+  "auth-register.html": {
+    zh: [{ selector: ".hero h1", text: "用户注册" }],
+  },
+  "account.html": {
+    zh: [{ selector: ".hero h1", text: "用户中心" }],
+  },
+};
+
 function getCurrentLang() {
   const urlLang = new URLSearchParams(window.location.search).get("lang");
   if (urlLang === "en" || urlLang === "zh") {
@@ -240,89 +516,22 @@ function setTextAt(selector, index, text) {
   if (nodes[index]) nodes[index].textContent = text;
 }
 
+function applyTextOps(ops) {
+  if (!ops || !ops.length) return;
+  for (const op of ops) {
+    if (typeof op.index === "number") {
+      setTextAt(op.selector, op.index, op.text);
+    } else {
+      setText(op.selector, op.text);
+    }
+  }
+}
+
 function applyZhPageLanguage() {
-  const titleMap = {
-    "index.html": "KidsCarLab 原型 - 首页",
-    "products.html": "产品 - 原型",
-    "reviews.html": "评测 - 原型",
-    "rankings.html": "排名/最佳 - 原型",
-    "news.html": "资讯更新 - 原型",
-    "about.html": "关于与透明度 - 原型",
-    "compare.html": "对比 - 原型",
-    "methodology.html": "测试方法 - 原型",
-    "test-results.html": "测试结果数据库 - 原型",
-    "guides.html": "指南与文章 - 原型",
-    "brands.html": "品牌与型号 - 原型",
-    "deals.html": "优惠与价格 - 原型",
-    "community.html": "社区与反馈 - 原型",
-    "auth-login.html": "登录 - 原型",
-    "auth-register.html": "注册 - 原型",
-    "account.html": "用户中心 - 原型",
-  };
-
-  if (titleMap[current]) {
-    document.title = titleMap[current];
-  }
-
-  if (current === "products.html") {
-    setText(".hero h1", "产品");
-  }
-
-  if (current === "reviews.html") {
-    setText(".hero h1", "评测");
-  }
-
-  if (current === "rankings.html") {
-    setText(".hero h1", "排名/最佳");
-  }
-
-  if (current === "news.html") {
-    setText(".hero h1", "资讯更新");
-  }
-
-  if (current === "about.html") {
-    setText(".hero h1", "关于与透明度");
-  }
-
-  if (current === "compare.html") {
-    setText(".hero h1", "对比");
-  }
-
-  if (current === "methodology.html") {
-    setText(".hero h1", "测试方法");
-  }
-
-  if (current === "test-results.html") {
-    setText(".hero h1", "测试结果数据库");
-  }
-
-  if (current === "guides.html") {
-    setText(".hero h1", "指南与文章");
-  }
-
-  if (current === "brands.html") {
-    setText(".hero h1", "品牌与型号");
-  }
-
-  if (current === "deals.html") {
-    setText(".hero h1", "优惠与价格");
-  }
-
-  if (current === "community.html") {
-    setText(".hero h1", "社区与反馈");
-  }
-
-  if (current === "auth-login.html") {
-    setText(".hero h1", "用户登录");
-  }
-
-  if (current === "auth-register.html") {
-    setText(".hero h1", "用户注册");
-  }
-
-  if (current === "account.html") {
-    setText(".hero h1", "用户中心");
-  }
+  const title = PAGE_TITLE_MAP.zh[current];
+  if (title) document.title = title;
+  const ops = PAGE_TEXT_OPS[current] && PAGE_TEXT_OPS[current].zh;
+  applyTextOps(ops);
 }
 
 function normalizeText(value) {
@@ -370,28 +579,11 @@ function applyPageLanguage() {
     return;
   }
 
-  const titleMap = {
-    "index.html": "KidscarLab Prototype - Home",
-    "products.html": "Products - Prototype",
-    "reviews.html": "Reviews - Prototype",
-    "rankings.html": "Rankings - Prototype",
-    "news.html": "News - Prototype",
-    "about.html": "About & Transparency - Prototype",
-    "compare.html": "Compare - Prototype",
-    "methodology.html": "Test Methodology - Prototype",
-    "test-results.html": "Test Results Database - Prototype",
-    "guides.html": "Guides & Articles - Prototype",
-    "brands.html": "Brands & Models - Prototype",
-    "deals.html": "Deals & Prices - Prototype",
-    "community.html": "Community & Feedback - Prototype",
-    "auth-login.html": "Sign In - Prototype",
-    "auth-register.html": "Sign Up - Prototype",
-    "account.html": "Account Center - Prototype",
-  };
+  const title = PAGE_TITLE_MAP.en[current];
+  if (title) document.title = title;
 
-  if (titleMap[current]) {
-    document.title = titleMap[current];
-  }
+  const ops = PAGE_TEXT_OPS[current] && PAGE_TEXT_OPS[current].en;
+  applyTextOps(ops);
 
   if (current === "auth-login.html") {
     const h1 = document.querySelector(".hero h1");
@@ -476,191 +668,6 @@ function applyPageLanguage() {
     if (listSpan[1]) listSpan[1].textContent = "Saved products and followed reviews";
     if (listSpan[2]) listSpan[2].textContent = "User rating records and comment history";
     if (listSpan[3]) listSpan[3].textContent = "Review updates, price alerts, system messages";
-  }
-
-  if (current === "index.html") {
-    setText(".hero h1", "RTINGS-Style Kids Vehicle Review Prototype");
-    setText(
-      ".hero p",
-      "This prototype is generated from your mind map: review-first, with rankings, products, updates, and transparency forming the decision path. This version focuses on first-level architecture and key second-level entries for the next step toward a real data-driven site."
-    );
-
-    setTextAt(".badges span", 0, "Review-driven decisions");
-    setTextAt(".badges span", 1, "Comparison-oriented navigation");
-    setTextAt(".badges span", 2, "Transparent, traceable testing");
-    setTextAt(".badges span", 3, "Built for kids vehicle categories");
-
-    setTextAt(".section h2", 0, "First-Level Structure Overview");
-    setTextAt(".section .subtitle", 0, "Covers the minimum viable structure in your mind map and leaves room for expansion.");
-    setTextAt(".grid .card h3", 0, "Reviews");
-    setTextAt(".grid .card h3", 1, "Best Picks");
-    setTextAt(".grid .card h3", 2, "Products");
-    setTextAt(".grid .card h3", 3, "News");
-    setTextAt(".grid .card h3", 4, "About & Transparency");
-    setTextAt(".grid .card h3", 5, "Complete First-Level Modules");
-    setTextAt(".grid .card p", 0, "Latest reviews organized by category, age, price tier, and testing metrics.");
-    setTextAt(".grid .card p", 1, "Leaderboards by composite score, features, user ratings, origin, price, safety, and value.");
-    setTextAt(".grid .card p", 2, "Browse products by category, age group, price tier, brand, and usage scenario.");
-    setTextAt(".grid .card p", 3, "Industry updates, product launches, promotions, media coverage, and transparency updates.");
-    setTextAt(".grid .card p", 4, "Testing process, data sources, review team, privacy policy, and supply chain transparency.");
-    setTextAt(".grid .card p", 5, "Prototype pages already include compare, methodology, test results, guides, brands, deals, and community feedback.");
-
-    setTextAt(".section h2", 1, "Complete First-Level Entry Links");
-    setTextAt(".section .subtitle", 1, "All pages below are clickable prototypes for interaction refinement and real data integration.");
-    setTextAt(".list .item strong", 0, "Compare");
-    setTextAt(".list .item strong", 1, "Test Methodology");
-    setTextAt(".list .item strong", 2, "Test Results Database");
-    setTextAt(".list .item strong", 3, "Guides & Articles");
-    setTextAt(".list .item strong", 4, "Brands & Models");
-    setTextAt(".list .item strong", 5, "Deals & Prices");
-    setTextAt(".list .item strong", 6, "Community & Feedback");
-    setTextAt(".list .item strong", 7, "User Registration");
-    setTextAt(".list .item strong", 8, "User Login");
-
-    setTextAt(".section h2", 2, "Homepage Module Prototype");
-    setTextAt(".section .subtitle", 2, "Mapped to your homepage blueprint: carousel, featured modules, editor picks, updates, and transparency block.");
-    setTextAt(".list .item strong", 9, "Carousel");
-    setTextAt(".list .item strong", 10, "Featured Modules");
-    setTextAt(".list .item strong", 11, "Editor Picks");
-    setTextAt(".list .item strong", 12, "News Feed");
-    setTextAt(".list .item strong", 13, "Transparency Block");
-    setTextAt(".list .item strong", 14, "Footer Links");
-    setTextAt(".list .item span", 9, "Latest reviews / latest rankings / latest products");
-    setTextAt(".list .item span", 10, "Composite ranking, feature ranking, user rating ranking, origin/price/safety/value");
-    setTextAt(".list .item span", 11, "Selected reviews, selected rankings, selected products");
-    setTextAt(".list .item span", 12, "Industry updates, product launches, promotions, media coverage");
-    setTextAt(".list .item span", 13, "Methodology, data sources, review team, company information");
-    setTextAt(".list .item span", 14, "Privacy policy, terms of use, contact, social media");
-
-    setTextAt(".kpi .label", 0, "Core first-level sections");
-    setTextAt(".kpi .label", 1, "Second-level entry points");
-    setTextAt(".kpi .label", 2, "Unified navigation system");
-    setTextAt(".kpi .label", 3, "Generated from blueprint");
-  }
-
-  if (current === "products.html") {
-    setText(".hero h1", "Products");
-    setText(".hero p", "Aggregates product data, structured specs, user feedback, and supply-chain transparency for filtering and comparison.");
-    setTextAt(".section h2", 0, "Secondary Navigation");
-    setTextAt(".list .item strong", 0, "Latest / All Products");
-    setTextAt(".list .item strong", 1, "Products by category");
-    setTextAt(".list .item strong", 2, "By age / price tier / scenario");
-    setTextAt(".list .item strong", 3, "Products by brand");
-    setTextAt(".list .item strong", 4, "Updates and version history");
-    setTextAt(".list .item strong", 5, "Editor picks");
-    setTextAt(".list .item span", 1, "Electric ride-ons, rocking cars, balance bikes, bicycles, scooters, tricycles");
-    setTextAt(".list .item span", 3, "Domestic / International / OEM");
-    setTextAt(".section h2", 1, "Product Information Database Prototype");
-    setTextAt(".grid .card h3", 0, "Product Specs Database");
-    setTextAt(".grid .card h3", 1, "User Reviews & Feedback");
-    setTextAt(".grid .card h3", 2, "Origin & Factory Information");
-    setTextAt(".grid .card p", 0, "Specifications, pricing, origin, testing data");
-    setTextAt(".grid .card p", 1, "Verified comments, user ratings, keyword tags");
-    setTextAt(".grid .card p", 2, "Origin traceability, factory certifications, manufacturer endorsements");
-  }
-
-  if (current === "reviews.html") {
-    setText(".hero h1", "Reviews");
-    setText(".hero p", "Organized around latest reviews, category-focused reviews, and update logs for a filterable, traceable, and comparable review system.");
-    setTextAt(".section h2", 0, "Secondary Navigation");
-    setTextAt(".list .item strong", 0, "Latest Reviews");
-    setTextAt(".list .item strong", 1, "All Reviews");
-    setTextAt(".list .item strong", 2, "Reviews by category");
-    setTextAt(".list .item strong", 3, "Reviews by age group");
-    setTextAt(".list .item strong", 4, "Reviews by price tier");
-    setTextAt(".list .item strong", 5, "Reviews by scenario");
-    setTextAt(".list .item strong", 6, "Reviews by testing metrics");
-    setTextAt(".list .item strong", 7, "Reviews by score tier");
-    setTextAt(".list .item strong", 8, "Reviews by brand");
-    setTextAt(".list .item strong", 9, "Review updates & changelog");
-    setTextAt(".list .item strong", 10, "Editor picks");
-    setTextAt(".list .item span", 2, "Electric ride-ons, rocking cars, balance bikes, bicycles, scooters, tricycles");
-    setTextAt(".list .item span", 3, "0-1, 1-3, 3-6, 6-12, 12-18");
-    setTextAt(".list .item span", 4, "Entry / Mainstream / Premium");
-    setTextAt(".list .item span", 5, "Indoor, outdoor, park, commuting, travel");
-    setTextAt(".list .item span", 6, "Safety, durability, handling, range, comfort, value");
-  }
-
-  if (current === "rankings.html") {
-    setText(".hero h1", "Best Picks");
-    setText(".hero p", "From composite scores to feature metrics, user ratings, and origin dimensions, this section builds layered recommendation leaderboards.");
-    setTextAt(".section h2", 0, "Core Ranking Entrances");
-    setTextAt(".section h2", 1, "Secondary Navigation");
-    setTextAt(".grid .card h3", 0, "Composite Score Ranking");
-    setTextAt(".grid .card h3", 1, "Feature Ranking");
-    setTextAt(".grid .card h3", 2, "User Ratings Ranking");
-    setTextAt(".grid .card h3", 3, "Origin Ranking");
-    setTextAt(".grid .card h3", 4, "Price Ranking");
-    setTextAt(".grid .card h3", 5, "Safety / Value Ranking");
-    setTextAt(".list .item strong", 0, "Latest / All Rankings");
-    setTextAt(".list .item strong", 1, "By type / age / price / scenario");
-    setTextAt(".list .item strong", 2, "By metric / score tier / brand");
-    setTextAt(".list .item strong", 3, "Changelog / Editor Picks");
-  }
-
-  if (current === "news.html") {
-    setText(".hero h1", "News & Updates");
-    setText(".hero p", "Covers industry moves, product launches, promotions, and transparency updates to keep users informed and engaged.");
-    setTextAt(".section h2", 0, "Secondary Navigation");
-    setTextAt(".list .item strong", 0, "Latest News");
-    setTextAt(".list .item strong", 1, "Industry Updates");
-    setTextAt(".list .item strong", 2, "Product Launches");
-    setTextAt(".list .item strong", 3, "Events & Promotions");
-    setTextAt(".list .item strong", 4, "Media Coverage");
-    setTextAt(".list .item strong", 5, "User Stories");
-    setTextAt(".list .item strong", 6, "Company News");
-    setTextAt(".list .item strong", 7, "Testing & Review Updates");
-    setTextAt(".list .item strong", 8, "Community Updates");
-    setTextAt(".list .item strong", 9, "Transparency Updates");
-  }
-
-  if (current === "about.html") {
-    setText(".hero h1", "About & Transparency");
-    setText(".hero p", "Explains methodology, data sources, review team practices, and supply-chain transparency to build trust in the platform.");
-    setTextAt(".section h2", 0, "Secondary Navigation");
-    setTextAt(".list .item strong", 0, "Company Information");
-    setTextAt(".list .item strong", 1, "Methodology / Data Sources");
-    setTextAt(".list .item strong", 2, "Review Team / Transparency Report");
-    setTextAt(".list .item strong", 3, "Ethics & Responsibility");
-    setTextAt(".list .item strong", 4, "Supply Chain Transparency / Origin Traceability");
-    setTextAt(".list .item strong", 5, "Factory Endorsement / Dual Confirmation");
-    setTextAt(".list .item strong", 6, "Privacy Policy / Terms of Use");
-    setTextAt(".list .item strong", 7, "Contact / FAQ / Feedback");
-  }
-
-  if (current === "compare.html") {
-    setText(".hero h1", "Compare");
-    setText(".hero p", "Compare two or multiple products on one screen across specs, test metrics, user ratings, and price trends.");
-  }
-
-  if (current === "methodology.html") {
-    setText(".hero h1", "Test Methodology");
-    setText(".hero p", "Publicly documents testing procedures, equipment, sampling strategy, scoring rules, and retest mechanisms for reproducibility.");
-  }
-
-  if (current === "test-results.html") {
-    setText(".hero h1", "Test Results Database");
-    setText(".hero p", "Presents structured test metrics, version differences, downloadable interfaces, and filters.");
-  }
-
-  if (current === "guides.html") {
-    setText(".hero h1", "Guides & Articles");
-    setText(".hero p", "Hub for buying guides, maintenance guides, policy explainers, and industry analysis articles.");
-  }
-
-  if (current === "brands.html") {
-    setText(".hero h1", "Brands & Models");
-    setText(".hero p", "Entry point for brand profiles, model series, iteration history, and market performance comparisons.");
-  }
-
-  if (current === "deals.html") {
-    setText(".hero h1", "Deals & Prices");
-    setText(".hero p", "Shows live deals, historical price curves, and channel price gap comparisons.");
-  }
-
-  if (current === "community.html") {
-    setText(".hero h1", "Community & Feedback");
-    setText(".hero p", "Aggregates user discussions, Q&A, voting, and suggestion feedback.");
   }
 }
 
