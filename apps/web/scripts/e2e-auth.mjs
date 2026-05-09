@@ -118,6 +118,14 @@ async function main() {
       throw new Error("Login page did not render the missing-session notice.");
     }
 
+    const hasGuestNav =
+      (loginNoticeHtml.includes("Register") && loginNoticeHtml.includes("Login")) ||
+      (loginNoticeHtml.includes("注册") && loginNoticeHtml.includes("登录"));
+
+    if (!hasGuestNav) {
+      throw new Error("Login page did not render the expected guest navigation links.");
+    }
+
     const login = await request(
       "/api/auth/login",
       {
@@ -153,6 +161,10 @@ async function main() {
       throw new Error("Authed account page did not include the demo email.");
     }
 
+    if (!accountHtml.includes("ID:")) {
+      throw new Error("Authed account page did not render the expected profile block.");
+    }
+
     const logout = await request("/api/auth/logout", { method: "POST" }, authedAccount.jar);
     if (logout.response.status !== 200) {
       throw new Error(`Logout failed with ${logout.response.status}`);
@@ -167,6 +179,11 @@ async function main() {
     const afterLogout = await request("/account", {}, logout.jar);
     if (![307, 308].includes(afterLogout.response.status)) {
       throw new Error(`Expected /account to redirect after logout, got ${afterLogout.response.status}`);
+    }
+
+    const afterLogoutLocation = afterLogout.response.headers.get("location") || "";
+    if (!afterLogoutLocation.includes("reason=missing")) {
+      throw new Error(`Expected logout redirect to point back to login with reason=missing, got ${afterLogoutLocation}`);
     }
 
     console.log("E2E auth smoke passed.");

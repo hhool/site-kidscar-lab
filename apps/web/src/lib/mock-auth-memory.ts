@@ -1,6 +1,4 @@
 import { compare, hash } from "bcryptjs";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { join } from "node:path";
 
 export type StoredUser = {
   id: string;
@@ -17,7 +15,12 @@ export type PublicUser = {
   createdAt: string;
 };
 
-const memoryStorePath = process.env.AUTH_MEMORY_FILE || join(process.cwd(), "data", "auth-memory-store.json");
+const DEMO_USER_ID = "memory-demo-user";
+const DEMO_EMAIL = "demo@kidscarlab.com";
+const DEMO_PASSWORD = "demo1234";
+
+const usersById = new Map<string, StoredUser>();
+const usersByEmail = new Map<string, StoredUser>();
 
 function normalizeEmail(email: string): string {
   return email.trim().toLowerCase();
@@ -32,67 +35,44 @@ function toPublicUser(user: StoredUser): PublicUser {
   };
 }
 
-type MemoryStore = {
-  users: StoredUser[];
-};
-
-async function readMemoryStore(): Promise<MemoryStore> {
-  try {
-    const raw = await readFile(memoryStorePath, "utf8");
-    const parsed = JSON.parse(raw) as Partial<MemoryStore>;
-    return {
-      users: Array.isArray(parsed.users) ? (parsed.users as StoredUser[]) : [],
-    };
-  } catch (error) {
-    if (error instanceof Error && "code" in error && error.code === "ENOENT") {
-      return { users: [] };
-    }
-
-    throw error;
-  }
-}
-
-async function writeMemoryStore(store: MemoryStore) {
-  await mkdir(join(process.cwd(), "data"), { recursive: true });
-  await writeFile(memoryStorePath, `${JSON.stringify(store, null, 2)}\n`, "utf8");
-}
-
-export async function ensureMemoryDemoUser() {
-  const store = await readMemoryStore();
-  const email = normalizeEmail("demo@kidscarlab.com");
-
-  if (store.users.some((user) => user.email === email)) {
+async function ensureDemoUser() {
+  if (usersByEmail.has(normalizeEmail(DEMO_EMAIL))) {
     return;
   }
 
-  const passwordHash = await hash("demo1234", 10);
-  store.users.push({
-    id: crypto.randomUUID(),
+  const passwordHash = await hash(DEMO_PASSWORD, 10);
+  const user: StoredUser = {
+    id: DEMO_USER_ID,
     name: "Demo User",
-    email,
+    email: normalizeEmail(DEMO_EMAIL),
     passwordHash,
     createdAt: new Date().toISOString(),
-  });
+  };
 
-  await writeMemoryStore(store);
+  usersById.set(user.id, user);
+  usersByEmail.set(user.email, user);
+}
+
+export async function ensureMemoryDemoUser() {
+  await ensureDemoUser();
 }
 
 export async function getMemoryUserByEmail(email: string): Promise<StoredUser | null> {
-  const store = await readMemoryStore();
-  return store.users.find((user) => user.email === normalizeEmail(email)) || null;
+  await ensureDemoUser();
+  return usersByEmail.get(normalizeEmail(email)) || null;
 }
 
 export async function getMemoryUserById(userId: string): Promise<PublicUser | null> {
-  const store = await readMemoryStore();
-  const user = store.users.find((entry) => entry.id === userId);
+  await ensureDemoUser();
+  const user = usersById.get(userId);
   return user ? toPublicUser(user) : null;
 }
 
 export async function registerMemoryUser(input: { name: string; email: string; password: string }) {
-  const store = await readMemoryStore();
-  const email = normalizeEmail(input.email);
+  await ensureDemoUser();
 
-  if (store.users.some((user) => user.email === email)) {
+  const email = normalizeEmail(input.email);
+  if (usersByEmail.has(email)) {
     return {
       ok: false as const,
       errorCode: "EMAIL_EXISTS" as const,
@@ -108,8 +88,8 @@ export async function registerMemoryUser(input: { name: string; email: string; p
     createdAt: new Date().toISOString(),
   };
 
-  store.users.push(user);
-  await writeMemoryStore(store);
+  usersById.set(user.id, user);
+  usersByEmail.set(user.email, user);
 
   return {
     ok: true as const,
@@ -118,8 +98,9 @@ export async function registerMemoryUser(input: { name: string; email: string; p
 }
 
 export async function loginMemoryUser(input: { email: string; password: string }) {
-  const user = await getMemoryUserByEmail(input.email);
+  await ensureDemoUser();
 
+  const user = usersByEmail.get(normalizeEmail(input.email));
   if (!user) {
     return {
       ok: false as const,
