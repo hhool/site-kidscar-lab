@@ -3,6 +3,11 @@
 import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { useAppLang } from "@/components/useAppLang";
+import { HeroCarousel } from "@/components/HeroCarousel";
+import { FeaturedRankings } from "@/components/FeaturedRankings";
+import { EditorPicks } from "@/components/EditorPicks";
+import { NewsHighlights } from "@/components/NewsHighlights";
+import { TransparencyPromo } from "@/components/TransparencyPromo";
 import { ROUTES } from "@/lib/constants/routes";
 
 const moduleLinks = [
@@ -73,23 +78,53 @@ export default function Home() {
 
   return (
     <PageShell
-      title={{ zh: "童车评测站点工程化骨架", en: "Kids Mobility Review Engineering Scaffold" }}
+      title={{ zh: "童车评测平台", en: "Kids Bike & Trike Review Platform" }}
       description={{
-        zh: "已从静态原型迁移到 Next.js。当前页面用于承接 Phase 0 Day 3 的语言与导航状态能力。",
-        en: "Migrated from static prototype to Next.js. This page now carries Day 3 language and navigation-state capabilities.",
+        zh: "独立评测、透明数据、智慧选择。我们帮助家长找到最安全、最适合的儿童出行产品。",
+        en: "Independent testing, transparent data, smart choices. We help parents find the safest and best kids mobility products.",
       }}
     >
-      <section className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {moduleLinks.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-zinc-400"
-          >
-            <h2 className="font-medium text-zinc-900">{isZh ? item.title.zh : item.title.en}</h2>
-            <p className="mt-2 text-sm text-zinc-600">{isZh ? item.desc.zh : item.desc.en}</p>
-          </Link>
-        ))}
+      {/* Hero Carousel - Featured content */}
+      <section className="mt-6">
+        <HeroCarousel />
+      </section>
+
+      {/* Featured modules row - Ranking + Picks */}
+      <section className="mt-8 grid gap-6 lg:grid-cols-2">
+        <FeaturedRankings />
+        <EditorPicks />
+      </section>
+
+      {/* News & Transparency sections */}
+      <section className="mt-8 grid gap-6 lg:grid-cols-2">
+        <NewsHighlights />
+        <TransparencyPromo />
+      </section>
+
+      {/* Module Navigation Grid - quick access to all sections */}
+      <section className="mt-8">
+        <div className="mb-4">
+          <h2 className="text-2xl font-bold text-zinc-900">
+            {isZh ? "📚 探索全部模块" : "📚 Explore All Modules"}
+          </h2>
+          <p className="mt-2 text-zinc-600">
+            {isZh
+              ? "浏览完整的评测、排名、产品与资讯内容"
+              : "Browse complete reviews, rankings, products, and news content"}
+          </p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {moduleLinks.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-zinc-400 hover:shadow-md"
+            >
+              <h3 className="font-semibold text-zinc-900">{isZh ? item.title.zh : item.title.en}</h3>
+              <p className="mt-2 text-sm text-zinc-600">{isZh ? item.desc.zh : item.desc.en}</p>
+            </Link>
+          ))}
+        </div>
       </section>
     </PageShell>
   );
