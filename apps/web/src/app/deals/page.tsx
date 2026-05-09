@@ -1,3 +1,5 @@
+import { PlaceholderPage } from "@/components/PlaceholderPage";
+
 export default function Page() {
-  return <main>deals page placeholder</main>;
+  return <PlaceholderPage title="优惠 Deals" description="价格趋势与渠道优惠信息占位。" />;
 }

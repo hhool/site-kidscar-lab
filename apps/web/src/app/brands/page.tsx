@@ -1,3 +1,5 @@
+import { PlaceholderPage } from "@/components/PlaceholderPage";
+
 export default function Page() {
-  return <main>brands page placeholder</main>;
+  return <PlaceholderPage title="品牌 Brands" description="品牌档案与型号聚合页面占位。" />;
 }

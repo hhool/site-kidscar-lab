@@ -1,3 +1,5 @@
+import { PlaceholderPage } from "@/components/PlaceholderPage";
+
 export default function Page() {
-  return <main>guides page placeholder</main>;
+  return <PlaceholderPage title="指南 Guides" description="购买和使用指南的列表与详情占位。" />;
 }
