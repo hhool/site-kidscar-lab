@@ -253,6 +253,71 @@ function applyTextOps(ops) {
   }
 }
 
+function validatePageI18nConfig() {
+  if (!isDevMode()) return [];
+
+  const lang = getCurrentLang();
+  const pageOps = pageTextOps[current] || {};
+  const ops = pageOps[lang] || [];
+  const titleMap = pageTitleMap[lang] || {};
+  const issues = [];
+
+  if (!titleMap[current]) {
+    issues.push(`Missing title mapping for ${current} (${lang})`);
+  }
+
+  for (const op of ops) {
+    const selector = op.selector;
+    const nodes = document.querySelectorAll(selector);
+    if (typeof op.index === "number") {
+      if (!nodes[op.index]) {
+        issues.push(`Selector index miss: ${selector}[${op.index}] for ${current} (${lang})`);
+      }
+      continue;
+    }
+
+    if (!nodes.length) {
+      issues.push(`Selector miss: ${selector} for ${current} (${lang})`);
+    }
+  }
+
+  if (issues.length) {
+    for (const issue of issues) {
+      console.warn(`[i18n-config] ${issue}`);
+    }
+  }
+
+  return issues;
+}
+
+function renderI18nDiagnostics(issues) {
+  if (!isDevMode()) return;
+  if (!issues || !issues.length) return;
+
+  const existing = document.querySelector("#i18nDiagPanel");
+  if (existing) existing.remove();
+
+  const panel = document.createElement("aside");
+  panel.id = "i18nDiagPanel";
+  panel.className = "i18n-diag-panel";
+
+  const title = document.createElement("div");
+  title.className = "i18n-diag-title";
+  title.textContent = `i18n diagnostics (${issues.length})`;
+
+  const list = document.createElement("ul");
+  list.className = "i18n-diag-list";
+  for (const issue of issues) {
+    const item = document.createElement("li");
+    item.textContent = issue;
+    list.appendChild(item);
+  }
+
+  panel.appendChild(title);
+  panel.appendChild(list);
+  document.body.appendChild(panel);
+}
+
 function applyZhPageLanguage() {
   const title = pageTitleMap.zh[current];
   if (title) document.title = title;
@@ -609,6 +674,7 @@ function renderDevAuthSwitch() {
 }
 
 function initializePage() {
+  const i18nIssues = validatePageI18nConfig();
   applyPageLanguage();
   renderAuthNav();
   bindLoginForm();
@@ -616,6 +682,7 @@ function initializePage() {
   renderAccountProfile();
   renderDevAuthSwitch();
   applySingleLanguagePresentation();
+  renderI18nDiagnostics(i18nIssues);
 }
 
 function rerenderPage() {
