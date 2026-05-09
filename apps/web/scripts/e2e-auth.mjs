@@ -102,6 +102,22 @@ async function main() {
       throw new Error(`Expected /account to redirect before login, got ${missingAccount.response.status}`);
     }
 
+    const missingLocation = missingAccount.response.headers.get("location") || "";
+    if (!missingLocation.includes("reason=missing")) {
+      throw new Error(`Expected missing-account redirect to carry reason=missing, got ${missingLocation}`);
+    }
+
+    const loginNotice = await request(missingLocation);
+    const loginNoticeHtml = await loginNotice.response.text();
+    const hasMissingNotice =
+      loginNoticeHtml.includes("Please sign in before accessing your account.") ||
+      loginNoticeHtml.includes("请先登录后访问用户中心。") ||
+      loginNoticeHtml.includes("请先登录后访问用户中心");
+
+    if (!hasMissingNotice) {
+      throw new Error("Login page did not render the missing-session notice.");
+    }
+
     const login = await request(
       "/api/auth/login",
       {
@@ -117,6 +133,16 @@ async function main() {
       throw new Error(`Login failed with ${login.response.status}: ${body}`);
     }
 
+    const authedMe = await request("/api/auth/me", {}, login.jar);
+    if (authedMe.response.status !== 200) {
+      throw new Error(`Expected /api/auth/me to return 200 after login, got ${authedMe.response.status}`);
+    }
+
+    const authedMeBody = await authedMe.response.json();
+    if (!authedMeBody.authed || authedMeBody.user?.email !== demoEmail) {
+      throw new Error("Auth state endpoint did not report the demo user after login.");
+    }
+
     const authedAccount = await request("/account", {}, login.jar);
     if (authedAccount.response.status !== 200) {
       throw new Error(`Expected authed /account to return 200, got ${authedAccount.response.status}`);
@@ -130,6 +156,12 @@ async function main() {
     const logout = await request("/api/auth/logout", { method: "POST" }, authedAccount.jar);
     if (logout.response.status !== 200) {
       throw new Error(`Logout failed with ${logout.response.status}`);
+    }
+
+    const afterLogoutMe = await request("/api/auth/me", {}, logout.jar);
+    const afterLogoutBody = await afterLogoutMe.response.json();
+    if (afterLogoutBody.authed !== false) {
+      throw new Error("Auth state endpoint still reported logged-in after logout.");
     }
 
     const afterLogout = await request("/account", {}, logout.jar);
