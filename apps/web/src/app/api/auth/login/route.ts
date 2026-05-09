@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { loginUser } from "@/lib/mock-auth";
+import { AUTH_COOKIE_NAME, createSessionToken, getSessionMaxAge } from "@/lib/auth-session";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -43,12 +44,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, errorCode: result.errorCode, message: "Invalid email or password." }, { status: 401 });
     }
 
-    return NextResponse.json({
+    const token = createSessionToken(result.user.id);
+
+    const response = NextResponse.json({
       ok: true,
       message: "Login successful.",
       user: result.user,
-      token: `mock-token-${crypto.randomUUID()}`,
+      token,
     });
+
+    response.cookies.set(AUTH_COOKIE_NAME, token, {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      maxAge: getSessionMaxAge(),
+    });
+
+    return response;
   } catch {
     return NextResponse.json({ ok: false, errorCode: "SERVER_ERROR", message: "Server error while logging in." }, { status: 500 });
   }

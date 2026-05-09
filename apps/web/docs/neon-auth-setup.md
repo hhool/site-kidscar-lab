@@ -14,6 +14,7 @@ Create a local `.env.local` file in `apps/web` and set:
 
 ```bash
 DATABASE_URL=postgresql://<user>:<password>@<host>/<database>?sslmode=require
+AUTH_SESSION_SECRET=replace-with-a-long-random-secret
 ```
 
 You can start from `.env.example`.
@@ -38,9 +39,11 @@ When first calling auth APIs, the app will:
 
 - `POST /api/auth/register`
 - `POST /api/auth/login`
+- `GET /api/auth/me`
+- `POST /api/auth/logout`
 
 ## Notes
 
 - Passwords are stored as bcrypt hashes.
-- Current implementation uses a mock token response and does not yet persist sessions/cookies.
-- For production, add secure session handling (httpOnly cookies + token/session table).
+- Current implementation already uses httpOnly cookie sessions signed by `AUTH_SESSION_SECRET`.
+- For production, rotate secrets safely and add dedicated server-side session revocation strategy if needed.

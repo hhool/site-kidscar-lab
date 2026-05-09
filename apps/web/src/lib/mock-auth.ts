@@ -101,6 +101,37 @@ async function getUserByEmail(email: string): Promise<StoredUser | null> {
   };
 }
 
+export async function getUserById(userId: string): Promise<PublicUser | null> {
+  await ensureReady();
+
+  const result = await query<{
+    id: string;
+    name: string;
+    email: string;
+    created_at: string;
+  }>(
+    `
+      SELECT id, name, email, created_at
+      FROM users
+      WHERE id = $1
+      LIMIT 1
+    `,
+    [userId],
+  );
+
+  const row = result.rows[0];
+  if (!row) {
+    return null;
+  }
+
+  return {
+    id: row.id,
+    name: row.name,
+    email: row.email,
+    createdAt: new Date(row.created_at).toISOString(),
+  };
+}
+
 async function ensureReady() {
   await ensureUsersTable();
   await seedDemoUser();

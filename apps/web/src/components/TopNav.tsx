@@ -2,13 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { type Locale } from "@/lib/constants/locales";
 import { ROUTES } from "@/lib/constants/routes";
 import { useAppLang } from "@/components/useAppLang";
 
-const AUTH_KEY = "kcl_auth";
 const AUTH_EVENT = "kcl:auth-change";
+
+type NavUser = {
+  id: string;
+  name: string;
+  email: string;
+};
 
 const mainLinks = [
   {
@@ -40,47 +45,57 @@ const text = {
   account: { zh: "用户中心", en: "Account" },
   logout: { zh: "退出", en: "Logout" },
   menu: { zh: "菜单", en: "Menu" },
-  toggleAuthOn: { zh: "模拟登录", en: "Mock Login" },
-  toggleAuthOff: { zh: "模拟退出", en: "Mock Logout" },
+  loading: { zh: "检测中", en: "Checking" },
 };
 
 function pick(lang: Locale, value: { zh: string; en: string }) {
   return lang === "zh" ? value.zh : value.en;
 }
 
-function subscribeAuth(onStoreChange: () => void): () => void {
-  if (typeof window === "undefined") {
-    return () => {};
-  }
-
-  const handler = () => onStoreChange();
-  window.addEventListener(AUTH_EVENT, handler);
-  window.addEventListener("storage", handler);
-
-  return () => {
-    window.removeEventListener(AUTH_EVENT, handler);
-    window.removeEventListener("storage", handler);
-  };
-}
-
-function readClientAuthed(): boolean {
-  if (typeof window === "undefined") {
-    return false;
-  }
-  return localStorage.getItem(AUTH_KEY) === "1";
-}
-
 export function TopNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const authed = useSyncExternalStore(subscribeAuth, readClientAuthed, () => false);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [user, setUser] = useState<NavUser | null>(null);
   const { lang, switchLang } = useAppLang();
 
   const isActive = (href: string) => pathname === href;
 
-  const toggleAuth = () => {
-    const next = !authed;
-    localStorage.setItem(AUTH_KEY, next ? "1" : "0");
+  const refreshSession = useCallback(async () => {
+    try {
+      const response = await fetch("/api/auth/me", { cache: "no-store" });
+      const data = (await response.json()) as { authed?: boolean; user?: NavUser | null };
+      setUser(data.authed ? data.user || null : null);
+    } catch {
+      setUser(null);
+    } finally {
+      setAuthLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const initialTimer = window.setTimeout(() => {
+      void refreshSession();
+    }, 0);
+
+    const handler = () => {
+      setAuthLoading(true);
+      void refreshSession();
+    };
+
+    window.addEventListener(AUTH_EVENT, handler);
+
+    return () => {
+      window.clearTimeout(initialTimer);
+      window.removeEventListener(AUTH_EVENT, handler);
+    };
+  }, [refreshSession]);
+
+  const authed = Boolean(user);
+
+  const logout = async () => {
+    await fetch("/api/auth/logout", { method: "POST" });
+    setUser(null);
     window.dispatchEvent(new Event(AUTH_EVENT));
   };
 
@@ -109,13 +124,7 @@ export function TopNav() {
           >
             {lang === "zh" ? "EN" : "中"}
           </button>
-          <button
-            type="button"
-            onClick={toggleAuth}
-            className="rounded-full border border-zinc-300 px-2.5 py-1 text-xs text-zinc-700"
-          >
-            {authed ? pick(lang, text.toggleAuthOff) : pick(lang, text.toggleAuthOn)}
-          </button>
+          {authLoading ? <span className="text-xs text-zinc-500">{pick(lang, text.loading)}...</span> : null}
           {authed ? (
             <>
               <Link
@@ -126,7 +135,7 @@ export function TopNav() {
               </Link>
               <button
                 type="button"
-                onClick={toggleAuth}
+                onClick={logout}
                 className="rounded-full bg-zinc-900 px-3 py-1.5 text-white"
               >
                 {pick(lang, text.logout)}
@@ -170,13 +179,7 @@ export function TopNav() {
               >
                 {lang === "zh" ? "EN" : "中"}
               </button>
-              <button
-                type="button"
-                onClick={toggleAuth}
-                className="rounded-full border border-zinc-300 px-2.5 py-1 text-xs text-zinc-700"
-              >
-                {authed ? pick(lang, text.toggleAuthOff) : pick(lang, text.toggleAuthOn)}
-              </button>
+              {authLoading ? <span className="self-center text-xs text-zinc-500">{pick(lang, text.loading)}...</span> : null}
             </div>
             {mainLinks.map((link) => (
               <Link
@@ -200,7 +203,7 @@ export function TopNav() {
                   </Link>
                   <button
                     type="button"
-                    onClick={toggleAuth}
+                    onClick={logout}
                     className="rounded-full bg-zinc-900 px-3 py-1.5 text-white"
                   >
                     {pick(lang, text.logout)}

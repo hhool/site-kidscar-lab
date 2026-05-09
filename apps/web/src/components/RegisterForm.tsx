@@ -143,6 +143,7 @@ export function RegisterForm() {
       }
 
       setSubmitted(true);
+      window.dispatchEvent(new Event("kcl:auth-change"));
     } catch {
       setErrors({ form: isZh ? "网络异常，请稍后重试" : "Network error, please try again" });
     } finally {
