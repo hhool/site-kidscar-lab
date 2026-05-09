@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KidsCarLab Web
 
-## Getting Started
+Next.js application scaffold for KidsCarLab prototype migration.
 
-First, run the development server:
+## Commands
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npm run build
+npm run check
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run check` is the Day 4 quality gate and must pass before commit.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Local Preview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev -- --hostname 127.0.0.1 --port 3010
+```
 
-## Learn More
+Open http://127.0.0.1:3010 in browser.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/app`: routes, layout, metadata routes
+- `src/components`: app shell and reusable components
+- `src/lib/constants`: routes, locales, module constants
+- `docs`: coding, naming, and commit conventions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## SEO Baseline (Day 4)
 
-## Deploy on Vercel
+- root metadata configured in `src/app/layout.tsx`
+- robots route in `src/app/robots.ts`
+- sitemap route in `src/app/sitemap.ts`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Current Scope
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- unified shell: top navigation, page shell, footer
+- no-refresh language switch (`lang` query + local storage)
+- mock auth state switch in navigation
+- bilingual placeholders for all primary routes

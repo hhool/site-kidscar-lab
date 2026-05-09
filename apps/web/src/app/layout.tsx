@@ -15,8 +15,41 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KidsCarLab",
-  description: "RTINGS style kids mobility review prototype",
+  metadataBase: new URL("https://kidscarlab.local"),
+  title: {
+    default: "KidsCarLab",
+    template: "%s | KidsCarLab",
+  },
+  description: "RTINGS style kids mobility review prototype for products, reviews, rankings, and transparency.",
+  applicationName: "KidsCarLab",
+  keywords: [
+    "kids car",
+    "stroller",
+    "kids mobility",
+    "reviews",
+    "rankings",
+    "methodology",
+    "transparency",
+  ],
+  alternates: {
+    canonical: "/",
+    languages: {
+      "zh-CN": "/?lang=zh",
+      en: "/?lang=en",
+    },
+  },
+  openGraph: {
+    type: "website",
+    title: "KidsCarLab",
+    description: "Kids mobility review and ranking prototype with transparent methodology.",
+    url: "/",
+    siteName: "KidsCarLab",
+    locale: "zh_CN",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
