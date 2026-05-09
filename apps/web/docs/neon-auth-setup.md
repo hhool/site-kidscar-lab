@@ -42,8 +42,14 @@ When first calling auth APIs, the app will:
 - `GET /api/auth/me`
 - `POST /api/auth/logout`
 
+
 ## Notes
 
-- Passwords are stored as bcrypt hashes.
-- Current implementation already uses httpOnly cookie sessions signed by `AUTH_SESSION_SECRET`.
-- For production, rotate secrets safely and add dedicated server-side session revocation strategy if needed.
+- `npm run e2e:auth` after `npm run build` for the minimal login/account/logout smoke test.
+- The smoke test runs with `AUTH_DATA_MODE=memory` by default so it does not need Neon credentials.
+
+## Local smoke mode
+
+- Set `AUTH_DATA_MODE=memory` to run the auth flow without Neon Postgres.
+- This mode is intended for local smoke tests and CI only.
+- The default remains Neon Postgres whenever `DATABASE_URL` is available.

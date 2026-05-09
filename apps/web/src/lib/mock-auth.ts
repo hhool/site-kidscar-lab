@@ -1,4 +1,6 @@
 import { compare, hash } from "bcryptjs";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
 import { query } from "@/lib/db";
 
 type StoredUser = {
@@ -18,6 +20,11 @@ export type PublicUser = {
 
 let usersTableReady = false;
 let demoUserSeeded = false;
+const memoryStorePath = process.env.AUTH_MEMORY_FILE || join(/* turbopackIgnore: true */ process.cwd(), ".next", "auth-memory-store.json");
+
+function shouldUseMemoryAuthStore() {
+  return process.env.AUTH_DATA_MODE === "memory" || !process.env.DATABASE_URL;
+}
 
 function normalizeEmail(email: string): string {
   return email.trim().toLowerCase();
@@ -70,7 +77,68 @@ async function seedDemoUser() {
   demoUserSeeded = true;
 }
 
+async function seedMemoryDemoUser() {
+  const store = await readMemoryStore();
+  const email = normalizeEmail("demo@kidscarlab.com");
+
+  if (store.users.some((user) => user.email === email)) {
+    return;
+  }
+
+  const passwordHash = await hash("demo1234", 10);
+  const user: StoredUser = {
+    id: crypto.randomUUID(),
+    name: "Demo User",
+    email,
+    passwordHash,
+    createdAt: new Date().toISOString(),
+  };
+
+  store.users.push(user);
+  await writeMemoryStore(store);
+}
+
+type MemoryStore = {
+  users: StoredUser[];
+};
+
+async function readMemoryStore(): Promise<MemoryStore> {
+  try {
+    const raw = await readFile(memoryStorePath, "utf8");
+    const parsed = JSON.parse(raw) as Partial<MemoryStore>;
+    return {
+      users: Array.isArray(parsed.users) ? (parsed.users as StoredUser[]) : [],
+    };
+  } catch (error) {
+    if (error instanceof Error && "code" in error && error.code === "ENOENT") {
+      return { users: [] };
+    }
+
+    throw error;
+  }
+}
+
+async function writeMemoryStore(store: MemoryStore) {
+  await mkdir(dirname(memoryStorePath), { recursive: true });
+  await writeFile(memoryStorePath, `${JSON.stringify(store, null, 2)}\n`, "utf8");
+}
+
+async function findMemoryUserByEmail(email: string): Promise<StoredUser | null> {
+  const store = await readMemoryStore();
+  return store.users.find((user) => user.email === normalizeEmail(email)) || null;
+}
+
+async function findMemoryUserById(userId: string): Promise<StoredUser | null> {
+  const store = await readMemoryStore();
+  return store.users.find((user) => user.id === userId) || null;
+}
+
 async function getUserByEmail(email: string): Promise<StoredUser | null> {
+  if (shouldUseMemoryAuthStore()) {
+    await seedMemoryDemoUser();
+    return findMemoryUserByEmail(email);
+  }
+
   const result = await query<{
     id: string;
     name: string;
@@ -102,6 +170,12 @@ async function getUserByEmail(email: string): Promise<StoredUser | null> {
 }
 
 export async function getUserById(userId: string): Promise<PublicUser | null> {
+  if (shouldUseMemoryAuthStore()) {
+    await seedMemoryDemoUser();
+    const user = await findMemoryUserById(userId);
+    return user ? toPublicUser(user) : null;
+  }
+
   await ensureReady();
 
   const result = await query<{
@@ -133,6 +207,11 @@ export async function getUserById(userId: string): Promise<PublicUser | null> {
 }
 
 async function ensureReady() {
+  if (shouldUseMemoryAuthStore()) {
+    await seedMemoryDemoUser();
+    return;
+  }
+
   await ensureUsersTable();
   await seedDemoUser();
 }
@@ -159,6 +238,16 @@ export async function registerUser(input: { name: string; email: string; passwor
     passwordHash,
     createdAt: new Date().toISOString(),
   };
+
+  if (shouldUseMemoryAuthStore()) {
+    const store = await readMemoryStore();
+    store.users.push(user);
+    await writeMemoryStore(store);
+    return {
+      ok: true as const,
+      user: toPublicUser(user),
+    };
+  }
 
   await query(
     `
