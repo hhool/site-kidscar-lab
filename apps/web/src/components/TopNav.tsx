@@ -6,8 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { type Locale } from "@/lib/constants/locales";
 import { ROUTES } from "@/lib/constants/routes";
 import { useAppLang } from "@/components/useAppLang";
-
-const AUTH_EVENT = "kcl:auth-change";
+import { AUTH_EVENT, AUTH_SYNC_KEY, emitAuthChange } from "@/lib/auth-sync";
 
 type NavUser = {
   id: string;
@@ -83,11 +82,20 @@ export function TopNav() {
       void refreshSession();
     };
 
+    const storageHandler = (event: StorageEvent) => {
+      if (event.key === AUTH_SYNC_KEY) {
+        setAuthLoading(true);
+        void refreshSession();
+      }
+    };
+
     window.addEventListener(AUTH_EVENT, handler);
+    window.addEventListener("storage", storageHandler);
 
     return () => {
       window.clearTimeout(initialTimer);
       window.removeEventListener(AUTH_EVENT, handler);
+      window.removeEventListener("storage", storageHandler);
     };
   }, [refreshSession]);
 
@@ -96,7 +104,7 @@ export function TopNav() {
   const logout = async () => {
     await fetch("/api/auth/logout", { method: "POST" });
     setUser(null);
-    window.dispatchEvent(new Event(AUTH_EVENT));
+    emitAuthChange();
   };
 
   return (

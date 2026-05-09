@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { ROUTES } from "@/lib/constants/routes";
 import { useAppLang } from "./useAppLang";
+import { emitAuthChange } from "@/lib/auth-sync";
 
 type LoginErrors = {
   email?: string;
@@ -121,7 +122,7 @@ export function LoginForm() {
       }
 
       setSubmitted(true);
-      window.dispatchEvent(new Event("kcl:auth-change"));
+      emitAuthChange();
     } catch {
       setErrors({ form: isZh ? "网络异常，请稍后重试" : "Network error, please try again" });
     } finally {
