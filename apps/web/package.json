@@ -12,7 +12,8 @@
     "test:watch": "vitest",
     "e2e:auth": "node scripts/e2e-auth.mjs",
     "test:ui": "playwright test",
-    "e2e:ui": "npm run build && npm run test:ui"
+    "e2e:ui": "npm run build && npm run test:ui",
+    "e2e": "npm run e2e:auth && npm run test:ui"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

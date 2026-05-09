@@ -34,4 +34,33 @@ test.describe("auth UI regression", () => {
     await expect(page).toHaveURL(/\/auth\/login\?reason=missing/);
     await expect(page.getByText(/Please sign in before accessing your account\.|请先登录后访问用户中心。?/)).toBeVisible();
   });
+
+  test("language toggle syncs nav and login form text", async ({ page }) => {
+    // Start in English (lang=en via query param)
+    await page.goto("/auth/login?lang=en&reason=missing");
+
+    const header = page.locator("header");
+
+    // English: nav shows EN labels; toggle button shows "中" (meaning: click to switch to ZH)
+    await expect(header).toContainText("Login");
+    await expect(header).toContainText("Register");
+    await expect(page.getByText("Welcome back")).toBeVisible();
+    await expect(header.getByRole("button", { name: "中" })).toBeVisible();
+
+    // Switch to Chinese
+    await header.getByRole("button", { name: "中" }).click();
+
+    // Chinese: nav shows ZH labels; toggle button shows "EN"
+    await expect(header).toContainText("登录");
+    await expect(header).toContainText("注册");
+    await expect(page.getByText("欢迎回来")).toBeVisible();
+    await expect(header.getByRole("button", { name: "EN" })).toBeVisible();
+
+    // Switch back to English
+    await header.getByRole("button", { name: "EN" }).click();
+
+    await expect(header).toContainText("Login");
+    await expect(header).toContainText("Register");
+    await expect(page.getByText("Welcome back")).toBeVisible();
+  });
 });
