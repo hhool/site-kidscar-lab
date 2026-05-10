@@ -105,6 +105,8 @@ export function TopNav() {
   }, [refreshSession]);
 
   const authed = Boolean(user);
+  const loginLabel = pickWithFallback(lang, text.login, "Login");
+  const logoutLabel = pickWithFallback(lang, text.logout, "Logout");
 
   const logout = async () => {
     await fetch("/api/auth/logout", { method: "POST" });
@@ -149,9 +151,10 @@ export function TopNav() {
               <button
                 type="button"
                 onClick={logout}
+                aria-label={logoutLabel}
                 className="inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-zinc-900 px-3 py-1.5 font-medium text-white"
               >
-                {pickWithFallback(lang, text.logout, "Logout")}
+                <span className="whitespace-nowrap leading-none text-white">{logoutLabel}</span>
               </button>
             </>
           ) : (
@@ -164,11 +167,12 @@ export function TopNav() {
               </Link>
               <Link
                 href={ROUTES.authLogin}
+                aria-label={loginLabel}
                 className={isActive(ROUTES.authLogin)
                   ? "inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-zinc-700 px-3 py-1.5 font-medium text-white"
                   : "inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-zinc-900 px-3 py-1.5 font-medium text-white"}
               >
-                {pickWithFallback(lang, text.login, "Login")}
+                <span className="whitespace-nowrap leading-none text-white">{loginLabel}</span>
               </Link>
             </>
           )}
@@ -219,9 +223,10 @@ export function TopNav() {
                   <button
                     type="button"
                     onClick={logout}
+                    aria-label={logoutLabel}
                     className="inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-zinc-900 px-3 py-1.5 font-medium text-white"
                   >
-                    {pickWithFallback(lang, text.logout, "Logout")}
+                    <span className="whitespace-nowrap leading-none text-white">{logoutLabel}</span>
                   </button>
                 </>
               ) : (
@@ -236,9 +241,10 @@ export function TopNav() {
                   <Link
                     href={ROUTES.authLogin}
                     onClick={() => setOpen(false)}
+                    aria-label={loginLabel}
                     className="inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-zinc-900 px-3 py-1.5 font-medium text-white"
                   >
-                    {pickWithFallback(lang, text.login, "Login")}
+                    <span className="whitespace-nowrap leading-none text-white">{loginLabel}</span>
                   </Link>
                 </>
               )}
