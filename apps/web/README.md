@@ -96,6 +96,7 @@ Detailed operations guide: [docs/content-admin.md](docs/content-admin.md)
 - Phase 3 release chat templates (prefilled): [docs/phase3-release-chat-templates-prefilled.md](docs/phase3-release-chat-templates-prefilled.md)
 - Phase 3 release monitoring checklist: [docs/phase3-release-monitoring-checklist.md](docs/phase3-release-monitoring-checklist.md)
 - Phase 3 release monitoring sheet (one-page): [docs/phase3-release-monitoring-sheet.md](docs/phase3-release-monitoring-sheet.md)
+- Phase 3 PR ready pack: [docs/phase3-pr-ready-pack.md](docs/phase3-pr-ready-pack.md)
 
 ## Content Snapshot Scripts
 
