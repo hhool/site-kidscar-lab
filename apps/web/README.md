@@ -12,6 +12,24 @@ npm run check
 npm run test
 ```
 
+## 自动化发布流程
+
+- GitHub Actions 工作流位置: `.github/workflows/web-ci.yml` (仓库根目录)
+- 触发条件:
+	- push 到 `main`
+	- 任意 pull request
+- 执行内容:
+	- quality gate: `npm run check`
+	- auth smoke e2e: `npm run e2e:auth`
+	- browser ui e2e: `npm run e2e:ui`
+- 运行目录统一为 `apps/web`，Node 版本固定为 `20`
+
+建议发布策略:
+
+- Vercel 保持 Git Integration，生产分支设为 `main`
+- 将 `web-ci / quality-gate`、`web-ci / auth-smoke-e2e`、`web-ci / ui-browser-e2e` 设为 main 分支必过检查
+- 仅在检查全部通过后合并到 `main`，Vercel 自动触发生产发布
+
 `npm run check` is the Day 4 quality gate and must pass before commit.
 
 Current check flow:
