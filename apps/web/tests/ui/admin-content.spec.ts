@@ -370,6 +370,96 @@ test.describe("admin rollback reviewer guard", () => {
     await expect(page.getByText(/Request ID copied\.|requestId 已复制。/)).toBeVisible();
   });
 
+  test("save shows unauthorized error when admin token is invalid", async ({ page }) => {
+    await page.route("**/api/content/**", async (route) => {
+      const request = route.request();
+      const url = new URL(request.url());
+
+      if (url.pathname === "/api/content/site" && request.method() === "PUT") {
+        await route.fulfill({
+          status: 401,
+          contentType: "application/json",
+          body: JSON.stringify({
+            ok: false,
+            errorCode: "UNAUTHORIZED",
+            message: "UNAUTHORIZED",
+          }),
+        });
+        return;
+      }
+
+      if (url.pathname === "/api/content/site" && request.method() === "GET" && url.searchParams.get("history") === "1") {
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            ok: true,
+            history: [],
+            pagination: {
+              page: 1,
+              pageSize: 10,
+              total: 0,
+              totalPages: 1,
+            },
+          }),
+        });
+        return;
+      }
+
+      if (url.pathname === "/api/content/site" && request.method() === "GET") {
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            ok: true,
+            snapshot: {
+              products: [],
+              reviews: [],
+              rankings: [],
+              news: [],
+              guides: [],
+              brands: [],
+              deals: [],
+              community: { qaPosts: [], polls: [], feedback: [] },
+            },
+            updatedAt: "2026-05-10T11:50:00.000Z",
+          }),
+        });
+        return;
+      }
+
+      if (url.pathname === "/api/content/reviewer-allowlist" && request.method() === "GET") {
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            ok: true,
+            reviewers: [{ reviewer: "ops", isActive: true, updatedAt: "2026-05-10T10:00:00.000Z" }],
+            pagination: {
+              page: 1,
+              pageSize: 10,
+              total: 1,
+              totalPages: 1,
+            },
+          }),
+        });
+        return;
+      }
+
+      await route.continue();
+    });
+
+    await page.goto("/admin/content?lang=en");
+
+    await page.getByPlaceholder("Enter CONTENT_ADMIN_TOKEN").fill("invalid-token");
+    await page.getByRole("button", { name: "Load" }).click();
+    await expect(page.getByText("Latest snapshot loaded.")).toBeVisible();
+
+    await page.getByRole("button", { name: "Save" }).click();
+    await expect(page.getByText("UNAUTHORIZED")).toBeVisible();
+    await expect(page.getByRole("button", { name: /copy-latest-request-id-/ })).toHaveCount(0);
+  });
+
   test("blocks rollback when selected reviewer becomes inactive before submit", async ({ page }) => {
     let rollbackPostCalled = false;
     let activeReviewerSourceCalls = 0;
