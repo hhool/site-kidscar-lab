@@ -127,7 +127,6 @@ export default function ComparePage() {
                 <td className="px-4 py-3 font-semibold text-zinc-900">{label("综合分", "Overall")}</td>
                 {compareItems.map((r) => {
                   const bestOverall = Math.max(...compareItems.map((x) => x.overallScore));
-                  const isBest = r.overallScore === bestOverall;
                   return (
                     <td key={r.id} className="px-4 py-3">
                       <ScoreBar value={r.overallScore} best={bestOverall} />

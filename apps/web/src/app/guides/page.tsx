@@ -4,20 +4,21 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { useAppLang } from "@/components/useAppLang";
+import { usePhase3Content } from "@/components/usePhase3Content";
 import {
   ALL_GUIDE_CATEGORIES,
   GUIDE_CATEGORIES,
-  mockGuides,
   type GuideCategory,
 } from "@/lib/guides-data";
 
 export default function GuidesPage() {
-  const { isZh } = useAppLang();
+  const { lang, isZh } = useAppLang();
+  const content = usePhase3Content();
   const [filter, setFilter] = useState<GuideCategory | "">("");
 
   const filtered = useMemo(
-    () => (filter ? mockGuides.filter((g) => g.category === filter) : mockGuides),
-    [filter],
+    () => (filter ? content.guides.filter((g) => g.category === filter) : content.guides),
+    [content.guides, filter],
   );
 
   const label = (zh: string, en: string) => (isZh ? zh : en);
@@ -58,7 +59,7 @@ export default function GuidesPage() {
         {filtered.map((g) => (
           <Link
             key={g.id}
-            href={`/guides/${g.slug}`}
+            href={`/guides/${g.slug}?lang=${lang}`}
             className="flex flex-col rounded-xl border border-zinc-200 bg-white p-5 hover:border-zinc-400 hover:shadow-sm transition-all"
           >
             <div className="flex items-center gap-2">

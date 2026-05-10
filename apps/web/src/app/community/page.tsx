@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { PageShell } from "@/components/PageShell";
 import { useAppLang } from "@/components/useAppLang";
-import { mockFeedback, mockPolls, mockQAPosts } from "@/lib/community-data";
+import { usePhase3Content } from "@/components/usePhase3Content";
 
 type Tab = "qa" | "polls" | "feedback";
 
@@ -15,6 +15,7 @@ const STATUS_COLORS = {
 
 export default function CommunityPage() {
   const { isZh } = useAppLang();
+  const content = usePhase3Content();
   const [tab, setTab] = useState<Tab>("qa");
 
   const label = (zh: string, en: string) => (isZh ? zh : en);
@@ -57,7 +58,7 @@ export default function CommunityPage() {
       {/* Q&A Tab */}
       {tab === "qa" && (
         <section className="mt-4 space-y-4">
-          {mockQAPosts.map((post) => (
+          {content.community.qaPosts.map((post) => (
             <div key={post.id} className="rounded-xl border border-zinc-200 bg-white p-5">
               <div className="flex flex-wrap items-center gap-2">
                 <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${STATUS_COLORS[post.status]}`}>
@@ -92,7 +93,7 @@ export default function CommunityPage() {
       {/* Polls Tab */}
       {tab === "polls" && (
         <section className="mt-4 space-y-4">
-          {mockPolls.map((poll) => (
+          {content.community.polls.map((poll) => (
             <div key={poll.id} className="rounded-xl border border-zinc-200 bg-white p-5">
               <h2 className="font-semibold text-zinc-900">
                 {isZh ? poll.question.zh : poll.question.en}
@@ -125,7 +126,7 @@ export default function CommunityPage() {
       {/* Feedback Tab */}
       {tab === "feedback" && (
         <section className="mt-4 space-y-4">
-          {mockFeedback.map((fb) => (
+          {content.community.feedback.map((fb) => (
             <div key={fb.id} className="rounded-xl border border-zinc-200 bg-white p-5">
               <div className="flex items-start justify-between gap-3">
                 <div>

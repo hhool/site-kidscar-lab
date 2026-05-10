@@ -112,7 +112,7 @@ export function getScoreByType(item: RankingItem, type: RankingType): number {
   return item.scores[type];
 }
 
-export function getRankingsByType(type: RankingType): Array<RankingItem & { rank: number }> {
-  const sorted = [...mockRankingItems].sort((a, b) => getScoreByType(b, type) - getScoreByType(a, type));
+export function getRankingsByType(type: RankingType, items: RankingItem[] = mockRankingItems): Array<RankingItem & { rank: number }> {
+  const sorted = [...items].sort((a, b) => getScoreByType(b, type) - getScoreByType(a, type));
   return sorted.map((item, index) => ({ ...item, rank: index + 1 }));
 }

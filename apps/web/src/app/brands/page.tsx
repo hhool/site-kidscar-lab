@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { PageShell } from "@/components/PageShell";
 import { useAppLang } from "@/components/useAppLang";
-import { ORIGIN_LABELS, mockBrands, type BrandOrigin } from "@/lib/brands-data";
+import { usePhase3Content } from "@/components/usePhase3Content";
+import { ORIGIN_LABELS, type BrandOrigin } from "@/lib/brands-data";
 
 const ALL_ORIGINS: BrandOrigin[] = ["CN", "DE", "US", "JP", "KR"];
 
@@ -14,11 +15,12 @@ function ScoreBadge({ score }: { score: number }) {
 
 export default function BrandsPage() {
   const { isZh } = useAppLang();
+  const content = usePhase3Content();
   const [filterOrigin, setFilterOrigin] = useState<BrandOrigin | "">("");
 
   const label = (zh: string, en: string) => (isZh ? zh : en);
 
-  const filtered = filterOrigin ? mockBrands.filter((b) => b.origin === filterOrigin) : mockBrands;
+  const filtered = filterOrigin ? content.brands.filter((b) => b.origin === filterOrigin) : content.brands;
 
   return (
     <PageShell
@@ -38,7 +40,7 @@ export default function BrandsPage() {
         >
           {label("全部", "All")}
         </button>
-        {ALL_ORIGINS.filter((o) => mockBrands.some((b) => b.origin === o)).map((o) => (
+        {ALL_ORIGINS.filter((o) => content.brands.some((b) => b.origin === o)).map((o) => (
           <button
             key={o}
             onClick={() => setFilterOrigin(o)}

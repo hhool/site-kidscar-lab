@@ -2,15 +2,17 @@
 
 import { useSearchParams } from "next/navigation";
 import { useAppLang } from "./useAppLang";
+import { usePhase3Content } from "./usePhase3Content";
 import { RankingCard } from "./RankingCard";
 import { RANKING_TYPES, getRankingsByType, type RankingType } from "@/lib/rankings-data";
 
 export function RankingsList() {
   const searchParams = useSearchParams();
   const { isZh } = useAppLang();
+  const content = usePhase3Content();
 
   const currentType = (searchParams.get("type") as RankingType) || "overall";
-  const rankings = getRankingsByType(currentType);
+  const rankings = getRankingsByType(currentType, content.rankings);
   const typeLabel = isZh ? RANKING_TYPES[currentType].zh : RANKING_TYPES[currentType].en;
 
   return (

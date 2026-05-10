@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
+import { getPhase3ContentSnapshot } from "@/lib/phase3-content-service";
 
 const routes = [
   "",
@@ -20,10 +21,13 @@ const routes = [
   "/account",
 ] as const;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
+  const snapshot = await getPhase3ContentSnapshot();
+  const guideRoutes = snapshot.guides.map((guide) => `/guides/${guide.slug}`);
+  const allRoutes = [...routes, ...guideRoutes];
 
-  return routes.map((route) => ({
+  return allRoutes.map((route) => ({
     url: `${SITE_URL}${route}`,
     lastModified: now,
     changeFrequency: route === "" ? "daily" : "weekly",

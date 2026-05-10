@@ -3,20 +3,21 @@
 import { useMemo, useState } from "react";
 import { PageShell } from "@/components/PageShell";
 import { useAppLang } from "@/components/useAppLang";
+import { usePhase3Content } from "@/components/usePhase3Content";
 import {
   ALL_NEWS_CATEGORIES,
   NEWS_CATEGORIES,
-  mockNews,
   type NewsCategory,
 } from "@/lib/news-data";
 
 export default function NewsPage() {
   const { isZh } = useAppLang();
+  const content = usePhase3Content();
   const [filter, setFilter] = useState<NewsCategory | "">("");
 
   const filtered = useMemo(
-    () => (filter ? mockNews.filter((n) => n.category === filter) : mockNews),
-    [filter],
+    () => (filter ? content.news.filter((n) => n.category === filter) : content.news),
+    [content.news, filter],
   );
 
   const label = (zh: string, en: string) => (isZh ? zh : en);

@@ -2,19 +2,21 @@
 
 import { useSearchParams } from "next/navigation";
 import { ReviewCard } from "./ReviewCard";
+import { usePhase3Content } from "./usePhase3Content";
 import { useAppLang } from "./useAppLang";
-import { mockReviews, filterReviews, type ReviewCategory, type ReviewAgeGroup, type ReviewPriceRange, type ReviewSortBy } from "@/lib/reviews-data";
+import { filterReviews, type ReviewCategory, type ReviewAgeGroup, type ReviewPriceRange, type ReviewSortBy } from "@/lib/reviews-data";
 
 export function ReviewsList() {
   const searchParams = useSearchParams();
   const { isZh } = useAppLang();
+  const content = usePhase3Content();
 
   const category = (searchParams.get("category") as ReviewCategory) || undefined;
   const age = (searchParams.get("age") as ReviewAgeGroup) || undefined;
   const price = (searchParams.get("price") as ReviewPriceRange) || undefined;
   const sort = (searchParams.get("sort") as ReviewSortBy) || "latest";
 
-  const filteredReviews = filterReviews(mockReviews, {
+  const filteredReviews = filterReviews(content.reviews, {
     category,
     ageGroup: age,
     priceRange: price,

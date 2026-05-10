@@ -4,19 +4,21 @@ import Link from "next/link";
 import { notFound, useParams } from "next/navigation";
 import { PageShell } from "@/components/PageShell";
 import { useAppLang } from "@/components/useAppLang";
-import { GUIDE_CATEGORIES, mockGuides } from "@/lib/guides-data";
+import { usePhase3Content } from "@/components/usePhase3Content";
+import { GUIDE_CATEGORIES } from "@/lib/guides-data";
 
 export default function GuideDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
-  const { isZh } = useAppLang();
+  const { lang, isZh } = useAppLang();
+  const content = usePhase3Content();
 
-  const guide = mockGuides.find((g) => g.slug === slug);
+  const guide = content.guides.find((g) => g.slug === slug);
   if (!guide) notFound();
 
   const label = (zh: string, en: string) => (isZh ? zh : en);
 
-  const related = mockGuides
+  const related = content.guides
     .filter((g) => g.slug !== slug && g.category === guide.category)
     .slice(0, 2);
 
@@ -113,7 +115,7 @@ export default function GuideDetailPage() {
 
           {/* Back + Related */}
           <div className="mt-10 border-t border-zinc-100 pt-8">
-            <Link href="/guides" className="text-sm text-zinc-500 hover:text-zinc-800 transition-colors">
+            <Link href={`/guides?lang=${lang}`} className="text-sm text-zinc-500 hover:text-zinc-800 transition-colors">
               ← {label("返回指南列表", "Back to Guides")}
             </Link>
             {related.length > 0 && (
@@ -123,7 +125,7 @@ export default function GuideDetailPage() {
                   {related.map((r) => (
                     <Link
                       key={r.id}
-                      href={`/guides/${r.slug}`}
+                      href={`/guides/${r.slug}?lang=${lang}`}
                       className="rounded-xl border border-zinc-200 bg-white p-4 hover:border-zinc-400 transition-colors"
                     >
                       <p className="text-sm font-medium text-zinc-800">

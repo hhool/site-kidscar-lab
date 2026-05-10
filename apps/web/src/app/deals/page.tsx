@@ -3,11 +3,11 @@
 import { useMemo, useState } from "react";
 import { PageShell } from "@/components/PageShell";
 import { useAppLang } from "@/components/useAppLang";
+import { usePhase3Content } from "@/components/usePhase3Content";
 import {
   ALL_DEAL_STATUSES,
   CHANNEL_LABELS,
   STATUS_LABELS,
-  mockDeals,
   type DealStatus,
 } from "@/lib/deals-data";
 
@@ -40,11 +40,12 @@ function MiniPriceChart({ history }: { history: { date: string; price: number }[
 
 export default function DealsPage() {
   const { isZh } = useAppLang();
+  const content = usePhase3Content();
   const [filterStatus, setFilterStatus] = useState<DealStatus | "">("");
 
   const filtered = useMemo(
-    () => (filterStatus ? mockDeals.filter((d) => d.status === filterStatus) : mockDeals),
-    [filterStatus],
+    () => (filterStatus ? content.deals.filter((d) => d.status === filterStatus) : content.deals),
+    [content.deals, filterStatus],
   );
 
   const label = (zh: string, en: string) => (isZh ? zh : en);

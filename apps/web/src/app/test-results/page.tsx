@@ -15,7 +15,6 @@ import {
   type ResultAgeGroup,
   type ResultBrand,
   type ResultCategory,
-  type ResultMetric,
 } from "@/lib/test-results-data";
 
 function ScoreCell({ value }: { value: number }) {

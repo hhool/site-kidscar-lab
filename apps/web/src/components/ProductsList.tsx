@@ -2,10 +2,10 @@
 
 import { useSearchParams } from "next/navigation";
 import { ProductCard } from "./ProductCard";
+import { usePhase3Content } from "./usePhase3Content";
 import { useAppLang } from "./useAppLang";
 import {
   filterProducts,
-  mockProducts,
   type ProductCategory,
   type ProductPriceRange,
   type ProductSortBy,
@@ -14,13 +14,14 @@ import {
 export function ProductsList() {
   const searchParams = useSearchParams();
   const { isZh } = useAppLang();
+  const content = usePhase3Content();
 
   const category = (searchParams.get("category") as ProductCategory) || undefined;
   const priceRange = (searchParams.get("price") as ProductPriceRange) || undefined;
   const query = searchParams.get("q") || undefined;
   const sortBy = (searchParams.get("sort") as ProductSortBy) || "featured";
 
-  const filteredProducts = filterProducts(mockProducts, {
+  const filteredProducts = filterProducts(content.products, {
     category,
     priceRange,
     query,

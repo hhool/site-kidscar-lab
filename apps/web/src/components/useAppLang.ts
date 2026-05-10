@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useSyncExternalStore } from "react";
 import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/lib/constants/locales";
 
 const LANG_KEY = "kcl_lang";
@@ -17,6 +17,7 @@ function readClientLang(): Locale {
 
   const query = new URLSearchParams(window.location.search).get("lang");
   if (isLocale(query)) {
+    localStorage.setItem(LANG_KEY, query);
     return query;
   }
 
@@ -45,6 +46,14 @@ function subscribe(onStoreChange: () => void): () => void {
 
 export function useAppLang() {
   const lang = useSyncExternalStore(subscribe, readClientLang, () => DEFAULT_LOCALE);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    localStorage.setItem(LANG_KEY, lang);
+  }, [lang]);
 
   const switchLang = useCallback(
     (nextLang: Locale) => {
