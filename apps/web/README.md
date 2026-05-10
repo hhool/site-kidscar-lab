@@ -111,6 +111,7 @@ Detailed operations guide: [docs/content-admin.md](docs/content-admin.md)
 - Phase 3 final handoff index: [docs/phase3-final-handoff-index.md](docs/phase3-final-handoff-index.md)
 - Phase 3 deployment execution: [docs/phase3-deployment-execution.md](docs/phase3-deployment-execution.md)
 - Phase 3 deployment callouts: [docs/phase3-deployment-callouts.md](docs/phase3-deployment-callouts.md)
+- Phase 3 deployment live script (filled): [docs/phase3-deployment-live-script-filled.md](docs/phase3-deployment-live-script-filled.md)
 
 ## Content Snapshot Scripts
 

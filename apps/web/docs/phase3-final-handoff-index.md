@@ -22,6 +22,9 @@ This is the one-page entry for the full Phase 3 delivery and release operation p
 6. Deployment execution stage:
 - docs/phase3-deployment-execution.md
 
+6.1 Deployment live script (filled):
+- docs/phase3-deployment-live-script-filled.md
+
 7. Monitoring one-page sheet:
 - docs/phase3-release-monitoring-sheet.md
 
