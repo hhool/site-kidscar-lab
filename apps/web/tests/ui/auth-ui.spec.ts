@@ -63,4 +63,27 @@ test.describe("auth UI regression", () => {
     await expect(header).toContainText("Register");
     await expect(page.getByText("Welcome back")).toBeVisible();
   });
+
+  test("news page top-nav login label is visible and non-empty", async ({ page }) => {
+    await page.goto("/news?lang=en");
+
+    const loginLink = page.locator("header a[href='/auth/login']").first();
+    await expect(loginLink).toBeVisible();
+    await expect(loginLink).toContainText("Login");
+
+    const renderedText = (await loginLink.textContent())?.trim() ?? "";
+    expect(renderedText.length).toBeGreaterThan(0);
+
+    const styleInfo = await loginLink.evaluate((element) => {
+      const target = element.querySelector("span") ?? element;
+      const computed = window.getComputedStyle(target);
+      return {
+        color: computed.color,
+        opacity: computed.opacity,
+      };
+    });
+
+    expect(styleInfo.color).not.toBe("rgba(0, 0, 0, 0)");
+    expect(Number(styleInfo.opacity)).toBeGreaterThan(0.5);
+  });
 });
