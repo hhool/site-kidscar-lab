@@ -107,6 +107,12 @@ export function TopNav() {
   const authed = Boolean(user);
   const loginLabel = pickWithFallback(lang, text.login, "Login");
   const logoutLabel = pickWithFallback(lang, text.logout, "Logout");
+  const authGhostClass =
+    "inline-flex min-w-[5.5rem] items-center justify-center rounded-full border border-zinc-300 bg-white px-3 py-1.5 text-zinc-800 transition-colors hover:border-zinc-400 hover:bg-zinc-50";
+  const authPrimaryClass =
+    "inline-flex h-8 min-w-[5.5rem] items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 text-sm font-medium leading-none text-blue-700 transition-colors hover:border-blue-300 hover:bg-blue-100";
+  const authPrimaryActiveClass =
+    "inline-flex h-8 min-w-[5.5rem] items-center justify-center rounded-full border border-blue-300 bg-blue-100 px-3 text-sm font-medium leading-none text-blue-800";
 
   const logout = async () => {
     await fetch("/api/auth/logout", { method: "POST" });
@@ -144,7 +150,7 @@ export function TopNav() {
             <>
               <Link
                 href={ROUTES.account}
-                className={isActive(ROUTES.account) ? "rounded-full border border-zinc-900 px-3 py-1.5 text-zinc-900" : "rounded-full border border-zinc-300 px-3 py-1.5 text-zinc-800"}
+                className={isActive(ROUTES.account) ? "rounded-full border border-zinc-900 px-3 py-1.5 text-zinc-900" : authGhostClass}
               >
                 {pick(lang, text.account)}
               </Link>
@@ -161,18 +167,20 @@ export function TopNav() {
             <>
               <Link
                 href={ROUTES.authRegister}
-                className={isActive(ROUTES.authRegister) ? "rounded-full border border-zinc-900 px-3 py-1.5 text-zinc-900" : "rounded-full border border-zinc-300 px-3 py-1.5 text-zinc-800"}
+                className={isActive(ROUTES.authRegister)
+                  ? authPrimaryActiveClass
+                  : authPrimaryClass}
               >
-                {pick(lang, text.register)}
+                <span className="whitespace-nowrap leading-none">{pick(lang, text.register)}</span>
               </Link>
               <Link
                 href={ROUTES.authLogin}
                 aria-label={loginLabel}
                 className={isActive(ROUTES.authLogin)
-                  ? "inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-zinc-700 px-3 py-1.5 font-medium text-white"
-                  : "inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-zinc-900 px-3 py-1.5 font-medium text-white"}
+                  ? authPrimaryActiveClass
+                  : authPrimaryClass}
               >
-                <span className="whitespace-nowrap leading-none text-white">{loginLabel}</span>
+                <span className="whitespace-nowrap leading-none">{loginLabel}</span>
               </Link>
             </>
           )}
@@ -234,17 +242,19 @@ export function TopNav() {
                   <Link
                     href={ROUTES.authRegister}
                     onClick={() => setOpen(false)}
-                    className="rounded-full border border-zinc-300 px-3 py-1.5 text-zinc-800"
+                    className={isActive(ROUTES.authRegister)
+                      ? authPrimaryActiveClass
+                      : authPrimaryClass}
                   >
-                    {pick(lang, text.register)}
+                    <span className="whitespace-nowrap leading-none">{pick(lang, text.register)}</span>
                   </Link>
                   <Link
                     href={ROUTES.authLogin}
                     onClick={() => setOpen(false)}
                     aria-label={loginLabel}
-                    className="inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-zinc-900 px-3 py-1.5 font-medium text-white"
+                    className={authPrimaryClass}
                   >
-                    <span className="whitespace-nowrap leading-none text-white">{loginLabel}</span>
+                    <span className="whitespace-nowrap leading-none">{loginLabel}</span>
                   </Link>
                 </>
               )}
