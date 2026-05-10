@@ -19,13 +19,16 @@ This is the one-page entry for the full Phase 3 delivery and release operation p
 5. Merge-to-release minute timeline:
 - docs/phase3-merge-to-release-timeline-script.md
 
-6. Monitoring one-page sheet:
+6. Deployment execution stage:
+- docs/phase3-deployment-execution.md
+
+7. Monitoring one-page sheet:
 - docs/phase3-release-monitoring-sheet.md
 
-7. Filled channel announcement copy:
+8. Filled channel announcement copy:
 - docs/phase3-channel-announcement-filled.md
 
-8. Reviewer first comment template:
+9. Reviewer first comment template:
 - docs/phase3-pr-reviewer-first-comment.md
 
 ## Quick Command References
