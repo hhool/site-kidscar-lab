@@ -99,6 +99,8 @@ Detailed operations guide: [docs/content-admin.md](docs/content-admin.md)
 - Phase 3 PR ready pack: [docs/phase3-pr-ready-pack.md](docs/phase3-pr-ready-pack.md)
 - Phase 3 release 10-min brief: [docs/phase3-release-10min-brief.md](docs/phase3-release-10min-brief.md)
 - Phase 3 push/PR commands: [docs/phase3-push-pr-commands.md](docs/phase3-push-pr-commands.md)
+- Phase 3 commit release notes: [docs/phase3-commit-release-notes.md](docs/phase3-commit-release-notes.md)
+- Phase 3 one-shot push guide: [docs/phase3-one-shot-push-guide.md](docs/phase3-one-shot-push-guide.md)
 
 ## Content Snapshot Scripts
 
