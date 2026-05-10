@@ -17,7 +17,9 @@
 # next.js
 /.next/
 /out/
-/data/
+/data/*
+!/data/site-content-snapshot.json
+/data/auth-memory-store.json
 
 # production
 /build

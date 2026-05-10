@@ -1,0 +1,1691 @@
+{
+  "products": [
+    {
+      "id": "pd-001",
+      "name": {
+        "zh": "XYZ-2000 超级平衡车",
+        "en": "XYZ-2000 Super Balance Bike"
+      },
+      "category": "balance-bike",
+      "ageGroup": {
+        "zh": "3-5 岁",
+        "en": "Age 3-5"
+      },
+      "priceRange": "100-200",
+      "priceValue": 169,
+      "rating": 9.8,
+      "tags": [
+        {
+          "zh": "编辑推荐",
+          "en": "Editor Pick"
+        },
+        {
+          "zh": "高安全",
+          "en": "High Safety"
+        }
+      ],
+      "summary": {
+        "zh": "旗舰级平衡车，稳定与安全兼顾。",
+        "en": "Flagship balance bike with strong stability and safety."
+      },
+      "featured": true
+    },
+    {
+      "id": "pd-002",
+      "name": {
+        "zh": "ABC-500 轻便款",
+        "en": "ABC-500 Lightweight"
+      },
+      "category": "balance-bike",
+      "ageGroup": {
+        "zh": "2-3 岁",
+        "en": "Age 2-3"
+      },
+      "priceRange": "50-100",
+      "priceValue": 79,
+      "rating": 8.9,
+      "tags": [
+        {
+          "zh": "预算友好",
+          "en": "Budget Friendly"
+        }
+      ],
+      "summary": {
+        "zh": "轻量化设计，适合低龄儿童入门。",
+        "en": "Lightweight starter option for younger kids."
+      }
+    },
+    {
+      "id": "pd-003",
+      "name": {
+        "zh": "DEF-800 全能型",
+        "en": "DEF-800 All-in-One"
+      },
+      "category": "kids-bike",
+      "ageGroup": {
+        "zh": "5-7 岁",
+        "en": "Age 5-7"
+      },
+      "priceRange": "100-200",
+      "priceValue": 189,
+      "rating": 9.3,
+      "tags": [
+        {
+          "zh": "综合均衡",
+          "en": "Balanced"
+        }
+      ],
+      "summary": {
+        "zh": "通过多项安全测试的全能车型。",
+        "en": "All-around bike with solid safety test results."
+      }
+    },
+    {
+      "id": "pd-004",
+      "name": {
+        "zh": "GHI-600 三轮车",
+        "en": "GHI-600 Tricycle"
+      },
+      "category": "tricycle",
+      "ageGroup": {
+        "zh": "2-3 岁",
+        "en": "Age 2-3"
+      },
+      "priceRange": "50-100",
+      "priceValue": 69,
+      "rating": 8.6,
+      "tags": [
+        {
+          "zh": "稳定首选",
+          "en": "Stability Pick"
+        }
+      ],
+      "summary": {
+        "zh": "抗侧翻能力优秀，适合新手。",
+        "en": "Strong anti-roll behavior for beginners."
+      }
+    },
+    {
+      "id": "pd-005",
+      "name": {
+        "zh": "JKL-950 高端儿童自行车",
+        "en": "JKL-950 Premium Kids Bike"
+      },
+      "category": "kids-bike",
+      "ageGroup": {
+        "zh": "7-10 岁",
+        "en": "Age 7-10"
+      },
+      "priceRange": "200-500",
+      "priceValue": 329,
+      "rating": 9.6,
+      "tags": [
+        {
+          "zh": "高端之选",
+          "en": "Premium Choice"
+        }
+      ],
+      "summary": {
+        "zh": "高端配置，舒适度和耐久性突出。",
+        "en": "Premium setup with standout comfort and durability."
+      },
+      "featured": true
+    },
+    {
+      "id": "pd-006",
+      "name": {
+        "zh": "MNO-300 滑板车",
+        "en": "MNO-300 Scooter"
+      },
+      "category": "scooter",
+      "ageGroup": {
+        "zh": "3-5 岁",
+        "en": "Age 3-5"
+      },
+      "priceRange": "0-50",
+      "priceValue": 45,
+      "rating": 8.2,
+      "tags": [
+        {
+          "zh": "入门推荐",
+          "en": "Beginner"
+        }
+      ],
+      "summary": {
+        "zh": "基础功能完善，适合初次尝试。",
+        "en": "Good basic feature set for first-time riders."
+      }
+    },
+    {
+      "id": "pd-007",
+      "name": {
+        "zh": "PQR-700 过渡款",
+        "en": "PQR-700 Transition"
+      },
+      "category": "balance-bike",
+      "ageGroup": {
+        "zh": "5-7 岁",
+        "en": "Age 5-7"
+      },
+      "priceRange": "100-200",
+      "priceValue": 149,
+      "rating": 8.8,
+      "tags": [
+        {
+          "zh": "过渡推荐",
+          "en": "Transition Pick"
+        }
+      ],
+      "summary": {
+        "zh": "专为从平衡车过渡到脚踏车阶段设计。",
+        "en": "Designed for transition from balance to pedal bikes."
+      }
+    },
+    {
+      "id": "pd-008",
+      "name": {
+        "zh": "STU-400 经济款三轮车",
+        "en": "STU-400 Budget Tricycle"
+      },
+      "category": "tricycle",
+      "ageGroup": {
+        "zh": "3-5 岁",
+        "en": "Age 3-5"
+      },
+      "priceRange": "0-50",
+      "priceValue": 39,
+      "rating": 7.9,
+      "tags": [
+        {
+          "zh": "经济型",
+          "en": "Economy"
+        }
+      ],
+      "summary": {
+        "zh": "价格友好，日常代步足够。",
+        "en": "Affordable and good enough for daily short rides."
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "id": "review-001",
+      "title": {
+        "zh": "XYZ-2000 超级平衡车评测",
+        "en": "XYZ-2000 Super Balance Bike Review"
+      },
+      "productName": {
+        "zh": "XYZ-2000 超级平衡车",
+        "en": "XYZ-2000 Super Balance Bike"
+      },
+      "category": "balance-bike",
+      "ageGroup": "3-5",
+      "priceRange": "100-200",
+      "overallScore": 9.8,
+      "safetyScore": 10,
+      "stabilityScore": 9.5,
+      "comfortScore": 9.6,
+      "durabilityScore": 9.7,
+      "valueScore": 9.5,
+      "summary": {
+        "zh": "这款平衡车在安全性和稳定性上表现卓越。",
+        "en": "This balance bike excels in safety and stability."
+      },
+      "excerpt": {
+        "zh": "经过100小时的测试，我们发现这款产品具有出色的制动性能...",
+        "en": "After 100 hours of testing, excellent braking performance..."
+      },
+      "testDate": "2026-04-15",
+      "reviewVersion": "v2.1",
+      "featured": true
+    },
+    {
+      "id": "review-002",
+      "title": {
+        "zh": "ABC-500 轻便平衡车",
+        "en": "ABC-500 Lightweight Balance Bike"
+      },
+      "productName": {
+        "zh": "ABC-500 轻便款",
+        "en": "ABC-500 Lightweight"
+      },
+      "category": "balance-bike",
+      "ageGroup": "2-3",
+      "priceRange": "50-100",
+      "overallScore": 8.9,
+      "safetyScore": 9.2,
+      "stabilityScore": 8.8,
+      "comfortScore": 8.7,
+      "durabilityScore": 8.5,
+      "valueScore": 9.4,
+      "summary": {
+        "zh": "性价比最优的平衡车选择。",
+        "en": "Best value balance bike."
+      },
+      "excerpt": {
+        "zh": "这款车以其轻量级设计脱颖而出...",
+        "en": "Lightweight design stands out..."
+      },
+      "testDate": "2026-04-10",
+      "reviewVersion": "v1.8"
+    },
+    {
+      "id": "review-003",
+      "title": {
+        "zh": "DEF-800 儿童自行车安全测试",
+        "en": "DEF-800 Kids Bike Safety Test"
+      },
+      "productName": {
+        "zh": "DEF-800 全能型",
+        "en": "DEF-800 All-in-One"
+      },
+      "category": "kids-bike",
+      "ageGroup": "5-7",
+      "priceRange": "100-200",
+      "overallScore": 9.3,
+      "safetyScore": 9.6,
+      "stabilityScore": 9.2,
+      "comfortScore": 9.1,
+      "durabilityScore": 9.3,
+      "valueScore": 8.9,
+      "summary": {
+        "zh": "全能型儿童自行车，安全性能达到国际标准。",
+        "en": "All-around kids bike with safety standards."
+      },
+      "excerpt": {
+        "zh": "通过 ISO 8098 认证...",
+        "en": "Certified to ISO 8098..."
+      },
+      "testDate": "2026-04-05",
+      "reviewVersion": "v2.0",
+      "featured": true
+    },
+    {
+      "id": "review-004",
+      "title": {
+        "zh": "GHI-600 三轮车耐久性评测",
+        "en": "GHI-600 Tricycle Durability Test"
+      },
+      "productName": {
+        "zh": "GHI-600 三轮车",
+        "en": "GHI-600 Tricycle"
+      },
+      "category": "tricycle",
+      "ageGroup": "2-3",
+      "priceRange": "50-100",
+      "overallScore": 8.6,
+      "safetyScore": 9.1,
+      "stabilityScore": 9.3,
+      "comfortScore": 8.4,
+      "durabilityScore": 8.2,
+      "valueScore": 8.5,
+      "summary": {
+        "zh": "稳定性最强的三轮车。",
+        "en": "Most stable tricycle."
+      },
+      "excerpt": {
+        "zh": "配备了双安全装置...",
+        "en": "Features dual safety systems..."
+      },
+      "testDate": "2026-03-28",
+      "reviewVersion": "v1.5"
+    },
+    {
+      "id": "review-005",
+      "title": {
+        "zh": "JKL-950 高端儿童自行车评测",
+        "en": "JKL-950 Premium Kids Bike Review"
+      },
+      "productName": {
+        "zh": "JKL-950 高端款",
+        "en": "JKL-950 Premium"
+      },
+      "category": "kids-bike",
+      "ageGroup": "7-10",
+      "priceRange": "200-500",
+      "overallScore": 9.6,
+      "safetyScore": 9.8,
+      "stabilityScore": 9.5,
+      "comfortScore": 9.7,
+      "durabilityScore": 9.6,
+      "valueScore": 9.2,
+      "summary": {
+        "zh": "高端儿童自行车，各项性能均属顶级水平。",
+        "en": "Premium bike with top-tier performance."
+      },
+      "excerpt": {
+        "zh": "采用航空级铝合金车架...",
+        "en": "Aviation-grade aluminum frame..."
+      },
+      "testDate": "2026-03-20",
+      "reviewVersion": "v2.2",
+      "featured": true
+    },
+    {
+      "id": "review-006",
+      "title": {
+        "zh": "MNO-300 儿童滑板车测试",
+        "en": "MNO-300 Kids Scooter Test"
+      },
+      "productName": {
+        "zh": "MNO-300 滑板车",
+        "en": "MNO-300 Scooter"
+      },
+      "category": "scooter",
+      "ageGroup": "3-5",
+      "priceRange": "0-50",
+      "overallScore": 8.2,
+      "safetyScore": 8.5,
+      "stabilityScore": 8.3,
+      "comfortScore": 7.9,
+      "durabilityScore": 8.1,
+      "valueScore": 8.8,
+      "summary": {
+        "zh": "入门级滑板车，性价比优秀。",
+        "en": "Beginner scooter with excellent value."
+      },
+      "excerpt": {
+        "zh": "这款滑板车设计简洁...",
+        "en": "Simple design with easy control..."
+      },
+      "testDate": "2026-03-15",
+      "reviewVersion": "v1.3"
+    },
+    {
+      "id": "review-007",
+      "title": {
+        "zh": "PQR-700 平衡车与自行车过渡产品",
+        "en": "PQR-700 Balance to Bike Transition"
+      },
+      "productName": {
+        "zh": "PQR-700 过渡款",
+        "en": "PQR-700 Transition"
+      },
+      "category": "balance-bike",
+      "ageGroup": "5-7",
+      "priceRange": "100-200",
+      "overallScore": 8.8,
+      "safetyScore": 9,
+      "stabilityScore": 8.9,
+      "comfortScore": 8.6,
+      "durabilityScore": 8.7,
+      "valueScore": 8.7,
+      "summary": {
+        "zh": "专为过渡期设计的混合产品。",
+        "en": "Hybrid transition product design."
+      },
+      "excerpt": {
+        "zh": "可配置的脚踏和车架设计...",
+        "en": "Configurable pedals and frame..."
+      },
+      "testDate": "2026-03-10",
+      "reviewVersion": "v1.9"
+    },
+    {
+      "id": "review-008",
+      "title": {
+        "zh": "STU-400 经济型三轮车",
+        "en": "STU-400 Budget Tricycle"
+      },
+      "productName": {
+        "zh": "STU-400 经济款",
+        "en": "STU-400 Budget"
+      },
+      "category": "tricycle",
+      "ageGroup": "3-5",
+      "priceRange": "0-50",
+      "overallScore": 7.9,
+      "safetyScore": 8.1,
+      "stabilityScore": 8.4,
+      "comfortScore": 7.6,
+      "durabilityScore": 7.7,
+      "valueScore": 8.9,
+      "summary": {
+        "zh": "入门级三轮车，性价比突出。",
+        "en": "Budget-friendly tricycle."
+      },
+      "excerpt": {
+        "zh": "虽然价格便宜但性能出色...",
+        "en": "Great performance at low price..."
+      },
+      "testDate": "2026-03-05",
+      "reviewVersion": "v1.0"
+    }
+  ],
+  "rankings": [
+    {
+      "id": "rk-001",
+      "productName": {
+        "zh": "XYZ-2000 超级平衡车",
+        "en": "XYZ-2000 Super Balance Bike"
+      },
+      "category": {
+        "zh": "平衡车",
+        "en": "Balance Bike"
+      },
+      "priceRange": {
+        "zh": "$100-200",
+        "en": "$100-200"
+      },
+      "scores": {
+        "overall": 9.8,
+        "safety": 10,
+        "value": 9.5,
+        "comfort": 9.6,
+        "durability": 9.7
+      },
+      "badges": [
+        {
+          "zh": "编辑推荐",
+          "en": "Editor Pick"
+        },
+        {
+          "zh": "测试冠军",
+          "en": "Test Winner"
+        }
+      ],
+      "highlight": {
+        "zh": "在刹车距离和低速稳定性测试中表现最佳。",
+        "en": "Best-in-class braking distance and low-speed stability."
+      },
+      "featured": true
+    },
+    {
+      "id": "rk-002",
+      "productName": {
+        "zh": "JKL-950 高端儿童自行车",
+        "en": "JKL-950 Premium Kids Bike"
+      },
+      "category": {
+        "zh": "儿童自行车",
+        "en": "Kids Bike"
+      },
+      "priceRange": {
+        "zh": "$200-500",
+        "en": "$200-500"
+      },
+      "scores": {
+        "overall": 9.6,
+        "safety": 9.8,
+        "value": 9.2,
+        "comfort": 9.7,
+        "durability": 9.6
+      },
+      "badges": [
+        {
+          "zh": "高端之选",
+          "en": "Premium Choice"
+        }
+      ],
+      "highlight": {
+        "zh": "长距离舒适度与车架强度均达到顶级。",
+        "en": "Top-tier long-ride comfort and frame rigidity."
+      },
+      "featured": true
+    },
+    {
+      "id": "rk-003",
+      "productName": {
+        "zh": "DEF-800 全能型",
+        "en": "DEF-800 All-in-One"
+      },
+      "category": {
+        "zh": "儿童自行车",
+        "en": "Kids Bike"
+      },
+      "priceRange": {
+        "zh": "$100-200",
+        "en": "$100-200"
+      },
+      "scores": {
+        "overall": 9.3,
+        "safety": 9.6,
+        "value": 8.9,
+        "comfort": 9.1,
+        "durability": 9.3
+      },
+      "badges": [
+        {
+          "zh": "均衡表现",
+          "en": "Balanced Performer"
+        }
+      ],
+      "highlight": {
+        "zh": "综合成绩稳定，适合多数家庭。",
+        "en": "Consistent all-around performance for most families."
+      }
+    },
+    {
+      "id": "rk-004",
+      "productName": {
+        "zh": "ABC-500 轻便款",
+        "en": "ABC-500 Lightweight"
+      },
+      "category": {
+        "zh": "平衡车",
+        "en": "Balance Bike"
+      },
+      "priceRange": {
+        "zh": "$50-100",
+        "en": "$50-100"
+      },
+      "scores": {
+        "overall": 8.9,
+        "safety": 9.2,
+        "value": 9.4,
+        "comfort": 8.7,
+        "durability": 8.5
+      },
+      "badges": [
+        {
+          "zh": "预算友好",
+          "en": "Budget Friendly"
+        }
+      ],
+      "highlight": {
+        "zh": "在 100 美元内有最优性价比。",
+        "en": "Best value under 100 dollars."
+      }
+    },
+    {
+      "id": "rk-005",
+      "productName": {
+        "zh": "PQR-700 过渡款",
+        "en": "PQR-700 Transition"
+      },
+      "category": {
+        "zh": "平衡车",
+        "en": "Balance Bike"
+      },
+      "priceRange": {
+        "zh": "$100-200",
+        "en": "$100-200"
+      },
+      "scores": {
+        "overall": 8.8,
+        "safety": 9,
+        "value": 8.7,
+        "comfort": 8.6,
+        "durability": 8.7
+      },
+      "badges": [
+        {
+          "zh": "过渡推荐",
+          "en": "Transition Pick"
+        }
+      ],
+      "highlight": {
+        "zh": "适合从平衡车过渡到脚踏车的阶段。",
+        "en": "Great for transition from balance to pedal bike."
+      }
+    },
+    {
+      "id": "rk-006",
+      "productName": {
+        "zh": "GHI-600 三轮车",
+        "en": "GHI-600 Tricycle"
+      },
+      "category": {
+        "zh": "三轮车",
+        "en": "Tricycle"
+      },
+      "priceRange": {
+        "zh": "$50-100",
+        "en": "$50-100"
+      },
+      "scores": {
+        "overall": 8.6,
+        "safety": 9.1,
+        "value": 8.5,
+        "comfort": 8.4,
+        "durability": 8.2
+      },
+      "badges": [
+        {
+          "zh": "稳定首选",
+          "en": "Stability Pick"
+        }
+      ],
+      "highlight": {
+        "zh": "侧翻控制和静态稳定性表现优秀。",
+        "en": "Excellent rollover control and static stability."
+      }
+    },
+    {
+      "id": "rk-007",
+      "productName": {
+        "zh": "MNO-300 滑板车",
+        "en": "MNO-300 Scooter"
+      },
+      "category": {
+        "zh": "滑板车",
+        "en": "Scooter"
+      },
+      "priceRange": {
+        "zh": "$0-50",
+        "en": "$0-50"
+      },
+      "scores": {
+        "overall": 8.2,
+        "safety": 8.5,
+        "value": 8.8,
+        "comfort": 7.9,
+        "durability": 8.1
+      },
+      "badges": [
+        {
+          "zh": "入门推荐",
+          "en": "Beginner Pick"
+        }
+      ],
+      "highlight": {
+        "zh": "低预算场景中综合表现可靠。",
+        "en": "Reliable option for low-budget scenarios."
+      }
+    },
+    {
+      "id": "rk-008",
+      "productName": {
+        "zh": "STU-400 经济款",
+        "en": "STU-400 Budget"
+      },
+      "category": {
+        "zh": "三轮车",
+        "en": "Tricycle"
+      },
+      "priceRange": {
+        "zh": "$0-50",
+        "en": "$0-50"
+      },
+      "scores": {
+        "overall": 7.9,
+        "safety": 8.1,
+        "value": 8.9,
+        "comfort": 7.6,
+        "durability": 7.7
+      },
+      "badges": [
+        {
+          "zh": "经济型",
+          "en": "Economy"
+        }
+      ],
+      "highlight": {
+        "zh": "在入门价位段具备良好价值。",
+        "en": "Strong value in the entry-level segment."
+      }
+    }
+  ],
+  "news": [
+    {
+      "id": "n-001",
+      "slug": "china-kids-mobility-2026-q1",
+      "category": "industry",
+      "title": {
+        "zh": "2026 Q1 中国童车市场规模突破 150 亿",
+        "en": "China Kids Mobility Market Exceeds ¥15B in Q1 2026"
+      },
+      "summary": {
+        "zh": "受益于亲子户外消费升级，平衡车与儿童自行车品类双双迎来高增速。",
+        "en": "Driven by family outdoor upgrades, balance bikes and kids bikes both recorded strong growth."
+      },
+      "source": {
+        "zh": "中国玩具及婴童用品协会",
+        "en": "China Toy & Baby Products Association"
+      },
+      "date": "2026-04-28",
+      "tags": [
+        {
+          "zh": "市场数据",
+          "en": "Market Data"
+        },
+        {
+          "zh": "增长趋势",
+          "en": "Growth Trend"
+        }
+      ]
+    },
+    {
+      "id": "n-002",
+      "slug": "xyz-3000-launch",
+      "category": "release",
+      "title": {
+        "zh": "XYZ-3000 旗舰平衡车正式发布，搭载磁性刹车系统",
+        "en": "XYZ-3000 Flagship Balance Bike Launches with Magnetic Braking"
+      },
+      "summary": {
+        "zh": "XYZ 品牌年度旗舰款上市，磁性刹车系统为行业首次应用，安全性能大幅提升。",
+        "en": "XYZ's annual flagship arrives with first-in-industry magnetic braking, significantly improving safety performance."
+      },
+      "source": {
+        "zh": "KidsCarLab 编辑部",
+        "en": "KidsCarLab Editorial"
+      },
+      "date": "2026-04-20",
+      "tags": [
+        {
+          "zh": "新品",
+          "en": "New Product"
+        },
+        {
+          "zh": "安全创新",
+          "en": "Safety Innovation"
+        }
+      ]
+    },
+    {
+      "id": "n-003",
+      "slug": "kids-outdoor-festival-2026",
+      "category": "event",
+      "title": {
+        "zh": "2026 亲子户外节：童车专区早鸟折扣最高 30%",
+        "en": "2026 Family Outdoor Festival: Kids Bike Zone Up to 30% Off Early Bird"
+      },
+      "summary": {
+        "zh": "本届亲子户外节设立专属童车体验区，多个主流品牌提供现场试乘与限时优惠。",
+        "en": "This year's festival features a dedicated kids bike experience zone with test rides and limited-time brand offers."
+      },
+      "source": {
+        "zh": "活动主办方",
+        "en": "Event Organizer"
+      },
+      "date": "2026-04-15",
+      "tags": [
+        {
+          "zh": "活动",
+          "en": "Event"
+        },
+        {
+          "zh": "优惠",
+          "en": "Deals"
+        }
+      ]
+    },
+    {
+      "id": "n-004",
+      "slug": "methodology-v21-update",
+      "category": "transparency",
+      "title": {
+        "zh": "测试方法 v2.1 更新：耐久性测试时长提升至 500 小时",
+        "en": "Methodology v2.1 Update: Durability Test Duration Raised to 500h"
+      },
+      "summary": {
+        "zh": "KidsCarLab 更新测试方法，耐久性模拟测试时长从 300 小时提升至 500 小时，同时新增材料无毒认证子项。",
+        "en": "KidsCarLab updated its methodology — durability simulation raised from 300h to 500h; non-toxic certification added as sub-metric."
+      },
+      "source": {
+        "zh": "KidsCarLab 测试团队",
+        "en": "KidsCarLab Test Team"
+      },
+      "date": "2026-04-15",
+      "tags": [
+        {
+          "zh": "方法更新",
+          "en": "Methodology Update"
+        },
+        {
+          "zh": "透明度",
+          "en": "Transparency"
+        }
+      ]
+    },
+    {
+      "id": "n-005",
+      "slug": "cctv-kids-safety-report",
+      "category": "media",
+      "title": {
+        "zh": "央视财经关注童车安全问题，多品牌质检情况披露",
+        "en": "CCTV Finance Reports on Kids Bike Safety, Multi-Brand QC Disclosure"
+      },
+      "summary": {
+        "zh": "央视财经对市售主流童车进行专题调查，本次报道涉及结构稳定性与材料安全两大核心维度。",
+        "en": "CCTV Finance conducted a special investigation into mainstream kids bikes, covering structural stability and material safety."
+      },
+      "source": {
+        "zh": "央视财经",
+        "en": "CCTV Finance"
+      },
+      "date": "2026-04-10",
+      "tags": [
+        {
+          "zh": "媒体",
+          "en": "Media"
+        },
+        {
+          "zh": "质量安全",
+          "en": "Quality Safety"
+        }
+      ]
+    },
+    {
+      "id": "n-006",
+      "slug": "safewheel-recall-notice",
+      "category": "transparency",
+      "title": {
+        "zh": "SafeWheel Pro 批次召回通知：部分紧固件存在松动风险",
+        "en": "SafeWheel Pro Batch Recall: Fastener Loosening Risk in Specific Lots"
+      },
+      "summary": {
+        "zh": "SafeWheel 品牌主动发布召回通知，涉及 2025 年 Q4 生产批次，建议用户核查序列号并联系售后。",
+        "en": "SafeWheel proactively issued a recall for Q4 2025 production batches; users advised to check serial numbers and contact after-sales."
+      },
+      "source": {
+        "zh": "SafeWheel 官方",
+        "en": "SafeWheel Official"
+      },
+      "date": "2026-04-05",
+      "tags": [
+        {
+          "zh": "召回",
+          "en": "Recall"
+        },
+        {
+          "zh": "安全通告",
+          "en": "Safety Notice"
+        }
+      ]
+    }
+  ],
+  "guides": [
+    {
+      "id": "g-001",
+      "slug": "how-to-choose-balance-bike",
+      "category": "buying",
+      "title": {
+        "zh": "平衡车怎么选？3 个关键指标帮你避坑",
+        "en": "How to Choose a Balance Bike: 3 Key Metrics to Avoid Mistakes"
+      },
+      "summary": {
+        "zh": "平衡车市场良莠不齐，本文从车架高度、轮胎类型和制动设计三个维度，帮你系统筛选。",
+        "en": "The balance bike market varies wildly. This guide breaks down frame height, tire type, and brake design to help you filter systematically."
+      },
+      "readingTime": 7,
+      "publishedDate": "2026-03-10",
+      "updatedDate": "2026-04-20",
+      "tags": [
+        {
+          "zh": "平衡车",
+          "en": "Balance Bike"
+        },
+        {
+          "zh": "选购",
+          "en": "Buying"
+        }
+      ],
+      "toc": [
+        {
+          "anchor": "frame-height",
+          "label": {
+            "zh": "车架高度",
+            "en": "Frame Height"
+          }
+        },
+        {
+          "anchor": "tire-type",
+          "label": {
+            "zh": "轮胎类型",
+            "en": "Tire Type"
+          }
+        },
+        {
+          "anchor": "brakes",
+          "label": {
+            "zh": "制动设计",
+            "en": "Brake Design"
+          }
+        },
+        {
+          "anchor": "checklist",
+          "label": {
+            "zh": "选购清单",
+            "en": "Buying Checklist"
+          }
+        }
+      ],
+      "body": {
+        "zh": "选购平衡车时，首先确认座椅最低高度比孩子腿长（内腿长）短 1-2cm，确保双脚可平稳着地。其次，充气轮胎提供更好的减震与抓地力，适合室外路面；EVA 发泡轮胎免维护，适合室内或平整地面。最后，手刹设计对 4 岁以上的孩子来说是重要的安全缓冲，建议优先选择配备手刹的型号。",
+        "en": "When choosing a balance bike, first confirm the minimum seat height is 1-2cm shorter than your child's inseam, ensuring both feet rest flat on the ground. Next, pneumatic tires offer better cushioning and grip for outdoor terrain; EVA foam tires are maintenance-free and ideal for indoor or smooth surfaces. Finally, hand brakes are an important safety buffer for children 4 and older — prioritize models with hand brakes."
+      }
+    },
+    {
+      "id": "g-002",
+      "slug": "kids-bike-age-guide",
+      "category": "age-guide",
+      "title": {
+        "zh": "0-12 岁童车年龄对照表：何时换、换什么",
+        "en": "0-12 Age Guide: When to Switch Kids Bikes and What to Choose"
+      },
+      "summary": {
+        "zh": "从婴儿三轮车到儿童自行车，梳理各年龄段最适合的车型与关键参数范围。",
+        "en": "From infant tricycles to full kids bikes, a structured breakdown of optimal vehicle types and key parameter ranges by age."
+      },
+      "readingTime": 10,
+      "publishedDate": "2026-02-15",
+      "tags": [
+        {
+          "zh": "年龄对照",
+          "en": "Age Guide"
+        },
+        {
+          "zh": "选购",
+          "en": "Buying"
+        }
+      ],
+      "toc": [
+        {
+          "anchor": "1-3",
+          "label": {
+            "zh": "1-3 岁：三轮车阶段",
+            "en": "1-3: Tricycle Stage"
+          }
+        },
+        {
+          "anchor": "3-5",
+          "label": {
+            "zh": "3-5 岁：平衡车阶段",
+            "en": "3-5: Balance Bike Stage"
+          }
+        },
+        {
+          "anchor": "5-8",
+          "label": {
+            "zh": "5-8 岁：入门自行车",
+            "en": "5-8: Starter Bike"
+          }
+        },
+        {
+          "anchor": "8-12",
+          "label": {
+            "zh": "8-12 岁：成长自行车",
+            "en": "8-12: Growth Bike"
+          }
+        }
+      ],
+      "body": {
+        "zh": "1-3 岁推荐带推杆的亲子三轮车，家长可辅助推行，孩子逐步建立平衡感知。3-5 岁是平衡车黄金期，无踏板设计能让孩子自然发展平衡与协调能力。5-8 岁可引入 12-16 寸儿童自行车，配合辅助轮过渡后撤除。8-12 岁选择可调节车架的成长型自行车，兼顾骑行效率与长期使用周期。",
+        "en": "Ages 1-3: parent-push tricycles with push handle help kids develop balance awareness. Ages 3-5: the golden balance bike window — pedal-free design naturally builds balance and coordination. Ages 5-8: introduce 12-16\" kids bikes with training wheels, then remove them. Ages 8-12: adjustable-frame growth bikes balance riding efficiency with a longer usage lifecycle."
+      }
+    },
+    {
+      "id": "g-003",
+      "slug": "kids-bike-safety-checklist",
+      "category": "safety",
+      "title": {
+        "zh": "童车安全检查清单：每次骑行前必做的 6 步",
+        "en": "Kids Bike Safety Checklist: 6 Steps Before Every Ride"
+      },
+      "summary": {
+        "zh": "参考儿童产品安全标准，整理家长可独立完成的骑行前安全检查步骤。",
+        "en": "Based on child product safety standards, a self-service pre-ride safety checklist for parents."
+      },
+      "readingTime": 5,
+      "publishedDate": "2026-01-20",
+      "tags": [
+        {
+          "zh": "安全",
+          "en": "Safety"
+        },
+        {
+          "zh": "检查清单",
+          "en": "Checklist"
+        }
+      ],
+      "toc": [
+        {
+          "anchor": "helmet",
+          "label": {
+            "zh": "头盔适配",
+            "en": "Helmet Fit"
+          }
+        },
+        {
+          "anchor": "tire",
+          "label": {
+            "zh": "轮胎气压",
+            "en": "Tire Pressure"
+          }
+        },
+        {
+          "anchor": "brake",
+          "label": {
+            "zh": "制动测试",
+            "en": "Brake Test"
+          }
+        },
+        {
+          "anchor": "fasteners",
+          "label": {
+            "zh": "紧固件检查",
+            "en": "Fastener Check"
+          }
+        },
+        {
+          "anchor": "seat",
+          "label": {
+            "zh": "座高调节",
+            "en": "Seat Height"
+          }
+        },
+        {
+          "anchor": "environment",
+          "label": {
+            "zh": "骑行环境评估",
+            "en": "Environment Assessment"
+          }
+        }
+      ],
+      "body": {
+        "zh": "每次骑行前建议完成：①头盔松紧度检查（两指原则）；②轮胎气压是否在推荐范围内；③刹车线是否顺畅、刹车片磨损状态；④车把、座管、踏板紧固件是否松动；⑤座高是否符合当前身高；⑥骑行路面是否适合当前年龄段与车型。",
+        "en": "Before each ride: ① Check helmet tightness (two-finger rule). ② Check tire pressure is within recommended range. ③ Test brake cables for smooth operation and check pad wear. ④ Check handlebar, seat post, and pedal fasteners for looseness. ⑤ Verify seat height matches current stature. ⑥ Assess whether the surface is suitable for the child's age group and vehicle type."
+      }
+    },
+    {
+      "id": "g-004",
+      "slug": "balance-bike-vs-tricycle",
+      "category": "comparison",
+      "title": {
+        "zh": "平衡车 vs 三轮车：哪个更适合你的孩子？",
+        "en": "Balance Bike vs Tricycle: Which Is Right for Your Child?"
+      },
+      "summary": {
+        "zh": "两种入门车型各有优劣，本文从年龄适配、运动发展和使用场景三个角度给出参考建议。",
+        "en": "Both starter types have pros and cons. This guide compares them across age fit, motor development, and usage context."
+      },
+      "readingTime": 6,
+      "publishedDate": "2026-03-25",
+      "tags": [
+        {
+          "zh": "横向对比",
+          "en": "Comparison"
+        },
+        {
+          "zh": "平衡车",
+          "en": "Balance Bike"
+        },
+        {
+          "zh": "三轮车",
+          "en": "Tricycle"
+        }
+      ],
+      "toc": [
+        {
+          "anchor": "pros-cons",
+          "label": {
+            "zh": "优劣对比",
+            "en": "Pros & Cons"
+          }
+        },
+        {
+          "anchor": "age-fit",
+          "label": {
+            "zh": "年龄适配",
+            "en": "Age Fit"
+          }
+        },
+        {
+          "anchor": "recommendation",
+          "label": {
+            "zh": "推荐建议",
+            "en": "Recommendation"
+          }
+        }
+      ],
+      "body": {
+        "zh": "三轮车结构稳定，适合 1-3 岁初次接触骑行的孩子，但对平衡能力的锻炼有限。平衡车通过双脚蹬地前进，能让孩子更快建立身体平衡感，是 3-5 岁的首选。如果孩子尚未满 3 岁，或户外骑行场地较为平整，推荐先从带推杆三轮车起步；若孩子已满 3 岁且有一定体力协调基础，直接选择平衡车将更有利于其未来过渡到两轮自行车。",
+        "en": "Tricycles offer structural stability for children 1-3 first encountering cycling, but provide limited balance training. Balance bikes — propelled by pushing with feet — help children develop body balance faster, making them the top choice for ages 3-5. If your child is under 3 or rides on very flat indoor surfaces, start with a push-handle tricycle. If they're 3+ with basic coordination, jumping straight to a balance bike will better prepare them for the transition to a two-wheel bike."
+      }
+    }
+  ],
+  "brands": [
+    {
+      "id": "b-001",
+      "slug": "xyz",
+      "name": "XYZ",
+      "logo": "XY",
+      "origin": "CN",
+      "founded": 2012,
+      "description": {
+        "zh": "专注儿童平衡车与自行车的国内领先品牌，旗舰产品连续三年获 KidsCarLab 安全性满分。",
+        "en": "China's leading kids balance bike and bicycle brand. Flagship products have scored 10/10 on safety for three consecutive years."
+      },
+      "certifications": [
+        "GB 6675-2014",
+        "CE EN 71",
+        "ISO 8098"
+      ],
+      "avgScore": 9.5,
+      "models": [
+        {
+          "id": "xyz-2000",
+          "name": {
+            "zh": "XYZ-2000 超级平衡车",
+            "en": "XYZ-2000 Super Balance Bike"
+          },
+          "category": "balance-bike",
+          "priceValue": 169,
+          "overallScore": 9.8
+        },
+        {
+          "id": "xyz-1000",
+          "name": {
+            "zh": "XYZ-1000 入门平衡车",
+            "en": "XYZ-1000 Starter Balance Bike"
+          },
+          "category": "balance-bike",
+          "priceValue": 89,
+          "overallScore": 9.2
+        }
+      ]
+    },
+    {
+      "id": "b-002",
+      "slug": "totride",
+      "name": "TotRide",
+      "logo": "TR",
+      "origin": "DE",
+      "founded": 1998,
+      "description": {
+        "zh": "德国品牌，以欧洲儿童工程学标准设计，专攻 1-5 岁低幼童车市场，全系获 TÜV 认证。",
+        "en": "German brand engineering products to European child ergonomics standards. Focused on the 1-5 age range, with full TÜV certification across the lineup."
+      },
+      "certifications": [
+        "TÜV SÜD",
+        "CE EN 71",
+        "DIN EN 8098"
+      ],
+      "avgScore": 9.4,
+      "models": [
+        {
+          "id": "tr-mini",
+          "name": {
+            "zh": "TotRide Mini 三轮车",
+            "en": "TotRide Mini Tricycle"
+          },
+          "category": "tricycle",
+          "priceValue": 129,
+          "overallScore": 9.4
+        }
+      ]
+    },
+    {
+      "id": "b-003",
+      "slug": "safewheel",
+      "name": "SafeWheel",
+      "logo": "SW",
+      "origin": "US",
+      "founded": 2008,
+      "description": {
+        "zh": "美国安全工程师团队创立，主打高安全性儿童自行车，每款产品均通过 ASTM 与 CPSC 双重认证。",
+        "en": "Founded by US safety engineers. Specializes in high-safety kids bikes, with every product dual-certified by ASTM and CPSC."
+      },
+      "certifications": [
+        "ASTM F2711",
+        "CPSC 16 CFR",
+        "CE EN 71"
+      ],
+      "avgScore": 9,
+      "models": [
+        {
+          "id": "sw-pro",
+          "name": {
+            "zh": "SafeWheel Pro 儿童自行车",
+            "en": "SafeWheel Pro Kids Bike"
+          },
+          "category": "kids-bike",
+          "priceValue": 219,
+          "overallScore": 9
+        }
+      ]
+    },
+    {
+      "id": "b-004",
+      "slug": "minigo",
+      "name": "MiniGo",
+      "logo": "MG",
+      "origin": "CN",
+      "founded": 2016,
+      "description": {
+        "zh": "主打轻量化设计的国内新锐品牌，滑板车产品以高性价比著称，深受学龄前家长青睐。",
+        "en": "A domestic emerging brand focused on lightweight design. Known for high-value scooters, widely popular with pre-school parents."
+      },
+      "certifications": [
+        "GB 6675-2014",
+        "3C 认证"
+      ],
+      "avgScore": 8.9,
+      "models": [
+        {
+          "id": "mg-lite",
+          "name": {
+            "zh": "MiniGo 轻量滑板车",
+            "en": "MiniGo Lightweight Scooter"
+          },
+          "category": "scooter",
+          "priceValue": 79,
+          "overallScore": 8.9
+        }
+      ]
+    },
+    {
+      "id": "b-005",
+      "slug": "pedalpal",
+      "name": "PedalPal",
+      "logo": "PP",
+      "origin": "JP",
+      "founded": 2004,
+      "description": {
+        "zh": "日本品牌，以精工制造与可调节成长车架著称，适合 5-12 岁长期使用，注重骑行效率与材料品质。",
+        "en": "Japanese brand known for precision manufacturing and adjustable growth frames. Designed for 5-12 year-olds with long-term use in mind."
+      },
+      "certifications": [
+        "JIS D 9301",
+        "CE EN 14764",
+        "SGS"
+      ],
+      "avgScore": 9,
+      "models": [
+        {
+          "id": "pp-growth",
+          "name": {
+            "zh": "PedalPal 成长自行车",
+            "en": "PedalPal Growth Bike"
+          },
+          "category": "kids-bike",
+          "priceValue": 249,
+          "overallScore": 9
+        }
+      ]
+    }
+  ],
+  "deals": [
+    {
+      "id": "d-001",
+      "productName": {
+        "zh": "XYZ-2000 超级平衡车",
+        "en": "XYZ-2000 Super Balance Bike"
+      },
+      "brand": "XYZ",
+      "channel": "tmall",
+      "status": "active",
+      "originalPrice": 199,
+      "dealPrice": 149,
+      "discount": 25,
+      "validUntil": "2026-05-20",
+      "description": {
+        "zh": "五一大促限时优惠，购买附赠头盔套装。",
+        "en": "May Day promo — limited time, free helmet set included."
+      },
+      "priceHistory": [
+        {
+          "date": "2026-01",
+          "price": 199
+        },
+        {
+          "date": "2026-02",
+          "price": 199
+        },
+        {
+          "date": "2026-03",
+          "price": 179
+        },
+        {
+          "date": "2026-04",
+          "price": 169
+        },
+        {
+          "date": "2026-05",
+          "price": 149
+        }
+      ]
+    },
+    {
+      "id": "d-002",
+      "productName": {
+        "zh": "TotRide Mini 三轮车",
+        "en": "TotRide Mini Tricycle"
+      },
+      "brand": "TotRide",
+      "channel": "jd",
+      "status": "active",
+      "originalPrice": 159,
+      "dealPrice": 129,
+      "discount": 19,
+      "validUntil": "2026-05-15",
+      "description": {
+        "zh": "京东自营限时折扣，支持 30 天无理由退换。",
+        "en": "JD self-operated limited discount, 30-day no-reason return."
+      },
+      "priceHistory": [
+        {
+          "date": "2026-01",
+          "price": 159
+        },
+        {
+          "date": "2026-02",
+          "price": 159
+        },
+        {
+          "date": "2026-03",
+          "price": 149
+        },
+        {
+          "date": "2026-04",
+          "price": 139
+        },
+        {
+          "date": "2026-05",
+          "price": 129
+        }
+      ]
+    },
+    {
+      "id": "d-003",
+      "productName": {
+        "zh": "MiniGo 轻量滑板车",
+        "en": "MiniGo Lightweight Scooter"
+      },
+      "brand": "MiniGo",
+      "channel": "official",
+      "status": "coming",
+      "originalPrice": 99,
+      "dealPrice": 69,
+      "discount": 30,
+      "validUntil": "2026-06-01",
+      "description": {
+        "zh": "六一儿童节专场预售，前 500 名享最低价。",
+        "en": "Children's Day pre-sale — first 500 orders get the lowest price."
+      },
+      "priceHistory": [
+        {
+          "date": "2026-01",
+          "price": 99
+        },
+        {
+          "date": "2026-02",
+          "price": 89
+        },
+        {
+          "date": "2026-03",
+          "price": 89
+        },
+        {
+          "date": "2026-04",
+          "price": 79
+        },
+        {
+          "date": "2026-05",
+          "price": 79
+        }
+      ]
+    },
+    {
+      "id": "d-004",
+      "productName": {
+        "zh": "SafeWheel Pro 儿童自行车",
+        "en": "SafeWheel Pro Kids Bike"
+      },
+      "brand": "SafeWheel",
+      "channel": "amazon",
+      "status": "expired",
+      "originalPrice": 259,
+      "dealPrice": 199,
+      "discount": 23,
+      "description": {
+        "zh": "亚马逊春季大促已结束，当前价格请以官网为准。",
+        "en": "Amazon spring promo has ended. Check official store for current price."
+      },
+      "priceHistory": [
+        {
+          "date": "2026-01",
+          "price": 259
+        },
+        {
+          "date": "2026-02",
+          "price": 239
+        },
+        {
+          "date": "2026-03",
+          "price": 199
+        },
+        {
+          "date": "2026-04",
+          "price": 219
+        },
+        {
+          "date": "2026-05",
+          "price": 219
+        }
+      ]
+    }
+  ],
+  "community": {
+    "qaPosts": [
+      {
+        "id": "qa-001",
+        "status": "answered",
+        "question": {
+          "zh": "3 岁孩子第一辆车选平衡车还是三轮车？",
+          "en": "First bike for a 3-year-old: balance bike or tricycle?"
+        },
+        "askedBy": "lily_mom",
+        "askedDate": "2026-04-20",
+        "tags": [
+          {
+            "zh": "选购",
+            "en": "Buying"
+          },
+          {
+            "zh": "3 岁",
+            "en": "Age 3"
+          }
+        ],
+        "answerCount": 8,
+        "topAnswer": {
+          "zh": "如果孩子已满 3 岁且体力协调发展正常，强烈推荐平衡车——锻炼平衡感更直接，也更容易过渡到两轮自行车。",
+          "en": "If your child is 3+ with normal motor development, a balance bike is strongly recommended — it builds balance more directly and eases the transition to a two-wheeler."
+        }
+      },
+      {
+        "id": "qa-002",
+        "status": "open",
+        "question": {
+          "zh": "SafeWheel Pro 召回批次如何核查序列号？",
+          "en": "How do I check if my SafeWheel Pro is in the recalled batch?"
+        },
+        "askedBy": "kevin_dad",
+        "askedDate": "2026-04-18",
+        "tags": [
+          {
+            "zh": "召回",
+            "en": "Recall"
+          },
+          {
+            "zh": "SafeWheel",
+            "en": "SafeWheel"
+          }
+        ],
+        "answerCount": 3
+      },
+      {
+        "id": "qa-003",
+        "status": "answered",
+        "question": {
+          "zh": "平衡车充气轮胎多久充一次气合适？",
+          "en": "How often should I inflate pneumatic tires on a balance bike?"
+        },
+        "askedBy": "sun_family",
+        "askedDate": "2026-04-10",
+        "tags": [
+          {
+            "zh": "保养",
+            "en": "Maintenance"
+          },
+          {
+            "zh": "轮胎",
+            "en": "Tires"
+          }
+        ],
+        "answerCount": 5,
+        "topAnswer": {
+          "zh": "建议每月检查一次，充气至建议胎压区间（通常标注在轮胎侧壁）。日常使用后如发现轮胎有明显变软，应立即检查。",
+          "en": "Check monthly and inflate to the recommended pressure range (usually marked on the tire sidewall). If the tire feels noticeably soft after regular use, inspect immediately."
+        }
+      },
+      {
+        "id": "qa-004",
+        "status": "open",
+        "question": {
+          "zh": "XYZ-2000 和 XYZ-3000 值得差价吗？",
+          "en": "Is the XYZ-3000 worth the price difference over the XYZ-2000?"
+        },
+        "askedBy": "zhang_parent",
+        "askedDate": "2026-04-28",
+        "tags": [
+          {
+            "zh": "对比",
+            "en": "Comparison"
+          },
+          {
+            "zh": "XYZ",
+            "en": "XYZ"
+          }
+        ],
+        "answerCount": 2
+      }
+    ],
+    "polls": [
+      {
+        "id": "poll-001",
+        "question": {
+          "zh": "你最看重童车的哪个维度？",
+          "en": "Which aspect of a kids bike matters most to you?"
+        },
+        "totalVotes": 342,
+        "options": [
+          {
+            "id": "safety",
+            "label": {
+              "zh": "安全性",
+              "en": "Safety"
+            },
+            "votes": 187
+          },
+          {
+            "id": "value",
+            "label": {
+              "zh": "性价比",
+              "en": "Value for Money"
+            },
+            "votes": 83
+          },
+          {
+            "id": "durability",
+            "label": {
+              "zh": "耐久性",
+              "en": "Durability"
+            },
+            "votes": 47
+          },
+          {
+            "id": "design",
+            "label": {
+              "zh": "外观设计",
+              "en": "Design & Aesthetics"
+            },
+            "votes": 25
+          }
+        ]
+      },
+      {
+        "id": "poll-002",
+        "question": {
+          "zh": "你倾向于从哪个渠道购买童车？",
+          "en": "Where do you prefer to buy kids bikes?"
+        },
+        "totalVotes": 218,
+        "closingDate": "2026-05-31",
+        "options": [
+          {
+            "id": "tmall",
+            "label": {
+              "zh": "天猫/淘宝",
+              "en": "Tmall / Taobao"
+            },
+            "votes": 89
+          },
+          {
+            "id": "jd",
+            "label": {
+              "zh": "京东",
+              "en": "JD.com"
+            },
+            "votes": 74
+          },
+          {
+            "id": "offline",
+            "label": {
+              "zh": "线下实体店",
+              "en": "Offline Store"
+            },
+            "votes": 41
+          },
+          {
+            "id": "official",
+            "label": {
+              "zh": "品牌官网",
+              "en": "Brand Official Site"
+            },
+            "votes": 14
+          }
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "id": "fb-001",
+        "author": "Emma_parent",
+        "date": "2026-04-25",
+        "rating": 5,
+        "content": {
+          "zh": "XYZ-2000 的安全评分完全名副其实，孩子骑了两个月依然稳定，刹车灵敏，非常满意。",
+          "en": "The XYZ-2000's safety score is fully deserved. After two months of use it's still solid, brakes are responsive. Very satisfied."
+        },
+        "productName": {
+          "zh": "XYZ-2000 超级平衡车",
+          "en": "XYZ-2000 Super Balance Bike"
+        },
+        "verified": true
+      },
+      {
+        "id": "fb-002",
+        "author": "tom_dad",
+        "date": "2026-04-18",
+        "rating": 4,
+        "content": {
+          "zh": "TotRide Mini 整体不错，组装简单，孩子很喜欢。唯一建议是推杆的握持长度对身高较高的家长有点短。",
+          "en": "TotRide Mini is solid overall, easy to assemble, and the kid loves it. Only suggestion: the push handle is a bit short for taller parents."
+        },
+        "productName": {
+          "zh": "TotRide Mini 三轮车",
+          "en": "TotRide Mini Tricycle"
+        },
+        "verified": true
+      },
+      {
+        "id": "fb-003",
+        "author": "sarah_m",
+        "date": "2026-04-10",
+        "rating": 5,
+        "content": {
+          "zh": "本站的测试数据帮助我排除了三个选项，最终选到真正适合的平衡车。希望未来能有更多本土品牌的测试覆盖。",
+          "en": "The test data on this site helped me eliminate three options and find the right balance bike. Hope to see more domestic brand coverage in the future."
+        },
+        "productName": {
+          "zh": "KidsCarLab 网站",
+          "en": "KidsCarLab Website"
+        },
+        "verified": false
+      }
+    ]
+  }
+}
