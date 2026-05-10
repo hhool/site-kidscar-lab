@@ -101,6 +101,7 @@ Detailed operations guide: [docs/content-admin.md](docs/content-admin.md)
 - Phase 3 push/PR commands: [docs/phase3-push-pr-commands.md](docs/phase3-push-pr-commands.md)
 - Phase 3 commit release notes: [docs/phase3-commit-release-notes.md](docs/phase3-commit-release-notes.md)
 - Phase 3 one-shot push guide: [docs/phase3-one-shot-push-guide.md](docs/phase3-one-shot-push-guide.md)
+- Phase 3 PR final copy: [docs/phase3-pr-final-copy.md](docs/phase3-pr-final-copy.md)
 
 ## Content Snapshot Scripts
 

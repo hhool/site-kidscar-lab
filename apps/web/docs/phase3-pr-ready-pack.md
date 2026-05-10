@@ -105,30 +105,24 @@ This PR delivers the full Phase 3 content admin workflow with requestId-based tr
 - [ ] Confirm snapshot backup export path is recorded.
 - [ ] Confirm rollback trigger and notification path are understood by on-call members.
 
-## 5. Push and PR Commands (No Remote Yet)
+## 5. Push and PR Commands (Updated)
 
-Current repository has no configured remote.
+Current repository is configured and pushed:
 
-1. Add remote:
+- origin: git@github.com:hhool/site-kidscar-lab.git
+- branch: main
 
-```bash
-git remote add origin <repo-url>
-```
-
-2. Verify branch and push:
+If needed, verify:
 
 ```bash
-git branch -M main
-git push -u origin main
+git remote -v
+git branch --show-current
+git status --short
 ```
 
-3. Optional: push explicit commits only:
+For final PR text, prefer:
 
-```bash
-git push origin 53151b2
-git push origin 5a4487a
-git push origin d4d6f1a
-```
+- docs/phase3-pr-final-copy.md
 
 ## 6. Commit Reference
 
