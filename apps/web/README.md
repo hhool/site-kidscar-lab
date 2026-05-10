@@ -104,6 +104,8 @@ Detailed operations guide: [docs/content-admin.md](docs/content-admin.md)
 - Phase 3 PR final copy: [docs/phase3-pr-final-copy.md](docs/phase3-pr-final-copy.md)
 - Phase 3 GitHub PR final template: [docs/phase3-pr-github-final.md](docs/phase3-pr-github-final.md)
 - Phase 3 post-merge release announcement: [docs/phase3-post-merge-release-announcement.md](docs/phase3-post-merge-release-announcement.md)
+- Phase 3 post-push 3-min checklist: [docs/phase3-post-push-3min-checklist.md](docs/phase3-post-push-3min-checklist.md)
+- Phase 3 PR reviewer first comment: [docs/phase3-pr-reviewer-first-comment.md](docs/phase3-pr-reviewer-first-comment.md)
 
 ## Content Snapshot Scripts
 
