@@ -110,3 +110,4 @@ No-Go / rollback trigger (any true):
 - docs/phase3-release-day-runbook.md
 - docs/phase3-release-monitoring-sheet.md
 - docs/phase3-channel-announcement-filled.md
+- docs/phase3-deployment-callouts.md
