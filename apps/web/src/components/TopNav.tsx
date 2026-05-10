@@ -51,6 +51,11 @@ function pick(lang: Locale, value: { zh: string; en: string }) {
   return lang === "zh" ? value.zh : value.en;
 }
 
+function pickWithFallback(lang: Locale, value: { zh: string; en: string }, fallback: string) {
+  const selected = pick(lang, value).trim();
+  return selected.length > 0 ? selected : fallback;
+}
+
 export function TopNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -144,9 +149,9 @@ export function TopNav() {
               <button
                 type="button"
                 onClick={logout}
-                className="rounded-full bg-zinc-900 px-3 py-1.5 text-white"
+                className="inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-zinc-900 px-3 py-1.5 font-medium text-white"
               >
-                {pick(lang, text.logout)}
+                {pickWithFallback(lang, text.logout, "Logout")}
               </button>
             </>
           ) : (
@@ -159,9 +164,11 @@ export function TopNav() {
               </Link>
               <Link
                 href={ROUTES.authLogin}
-                className={isActive(ROUTES.authLogin) ? "rounded-full bg-zinc-700 px-3 py-1.5 text-white" : "rounded-full bg-zinc-900 px-3 py-1.5 text-white"}
+                className={isActive(ROUTES.authLogin)
+                  ? "inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-zinc-700 px-3 py-1.5 font-medium text-white"
+                  : "inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-zinc-900 px-3 py-1.5 font-medium text-white"}
               >
-                {pick(lang, text.login)}
+                {pickWithFallback(lang, text.login, "Login")}
               </Link>
             </>
           )}
@@ -212,9 +219,9 @@ export function TopNav() {
                   <button
                     type="button"
                     onClick={logout}
-                    className="rounded-full bg-zinc-900 px-3 py-1.5 text-white"
+                    className="inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-zinc-900 px-3 py-1.5 font-medium text-white"
                   >
-                    {pick(lang, text.logout)}
+                    {pickWithFallback(lang, text.logout, "Logout")}
                   </button>
                 </>
               ) : (
@@ -229,9 +236,9 @@ export function TopNav() {
                   <Link
                     href={ROUTES.authLogin}
                     onClick={() => setOpen(false)}
-                    className="rounded-full bg-zinc-900 px-3 py-1.5 text-white"
+                    className="inline-flex min-w-[5.5rem] items-center justify-center rounded-full bg-zinc-900 px-3 py-1.5 font-medium text-white"
                   >
-                    {pick(lang, text.login)}
+                    {pickWithFallback(lang, text.login, "Login")}
                   </Link>
                 </>
               )}
