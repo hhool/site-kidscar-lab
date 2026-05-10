@@ -108,6 +108,7 @@ Detailed operations guide: [docs/content-admin.md](docs/content-admin.md)
 - Phase 3 PR reviewer first comment: [docs/phase3-pr-reviewer-first-comment.md](docs/phase3-pr-reviewer-first-comment.md)
 - Phase 3 channel announcement (filled): [docs/phase3-channel-announcement-filled.md](docs/phase3-channel-announcement-filled.md)
 - Phase 3 merge-to-release timeline script: [docs/phase3-merge-to-release-timeline-script.md](docs/phase3-merge-to-release-timeline-script.md)
+- Phase 3 final handoff index: [docs/phase3-final-handoff-index.md](docs/phase3-final-handoff-index.md)
 
 ## Content Snapshot Scripts
 
